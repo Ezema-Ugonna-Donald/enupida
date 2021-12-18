@@ -1,9 +1,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; script-src-elem 'self' http://cdn.jsdelivr.net/; connect-src 'self' *; img-src 'self' data: blob: *; style-src 'self' 'unsafe-inline' *;base-uri 'self' *; font-src 'self' data: blob: *;form-action 'self' *">
-
+<!--        <link hre>-->
+        <script src="/js/lib/pelloinclude/deuzpathfinder/masze.js"></script>
     </head>
-    <body>
-
+    <body id="zvers">
+        <section id="algo-sect">
+            <button>Refresh</button>
+            <a href="/games-section">Game Section</a>
+            <a onclick="displayProcessSecurityUI ()">AzuGardia</a>
+            <!-- <a routerLink="/azugardia">AzuGardia</a> -->
+            <p id= "tell-me"></p>
+            <p></p>
+            <canvas></canvas>
+        </section>
     </body>
 </html>
