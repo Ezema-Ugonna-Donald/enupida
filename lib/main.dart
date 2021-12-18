@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Enupida());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Enupida extends StatelessWidget {
+  const Enupida({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
