@@ -2,7 +2,7 @@
     "name": "enupida",
     "version": "0.0.1",
     "description": "Enupida - Stress lots.",
-    "content_security_policy": "script-src 'self' 'unsafe-eval' 'unsafe-inine'; object-src 'self';",
+    "content_security_policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline'; default-src 'self'; object-src 'self'; script-src-elem 'self'; connect-src 'self' ; img-src 'self' data: blob: ; style-src 'self' 'unsafe-inline' ;base-uri 'self' ; font-src 'self' data: blob: ;form-action 'self' ",
     "orientation": "portrait-primary",
     "browser_action": {
         "default_popup": "index.html",
