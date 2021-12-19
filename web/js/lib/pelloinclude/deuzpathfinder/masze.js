@@ -3,18 +3,18 @@ let matrix = []
 let imgColourMatrix = []
 
 let hut = new Image (22, 12)
-let hut.src = "./assets/algorithm/hut.png"
+let hut.src = "./../../../dimenszio/algoridum/hut.png"
 let hut.setAttribute ('crossOrigin', '')
 
 let cauldron = new Image (22, 12)
-let cauldron.src = "./assets/algorithm/african cauldron with jellof rice.png"
+let cauldron.src = "./../../../dimenszio/algoridum/african cauldron with jellof rice.png"
 let cauldron.setAttribute ("crossOrigin", "")
 let cauldronX = 0
 let cauldronY = 0
 
 let goalImgdimensionData = {}
 let goalImg = new Image (22, 12)
-let goalImg.src = "./assets/algorithm/deuz.png"
+let goalImg.src = "./../../../dimenszio/algoridum/deuz.png"
 let goalImg.setAttribute ('crossOrigin', '')
 let goalX = 0
 let goalY = 0
@@ -22,7 +22,7 @@ let gImgColourMatrix = []
 
 let originImgdimensionData = {}
 let originImg = new Image (22, 12)
-let originImg.src = "./assets/algorithm/plateORice.png"
+let originImg.src = "./../../../dimenszio/algoridum/plateORice.png"
 let originImg.setAttribute ('crossOrigin', '')
 let originX = 0
 let originY = 0
@@ -43,7 +43,7 @@ let clickedComplete = new Event ("interactionComplete")
 
 //zvers.addEventListener ("load", () => {
     hut = new Image (22, 12)
-    hut.src = "./assets/algorithm/hut.png"
+    hut.src = "./../../../dimenszio/algoridum/hut.png"
     hut.setAttribute ('crossOrigin', '')
 
     setUniverse ()
