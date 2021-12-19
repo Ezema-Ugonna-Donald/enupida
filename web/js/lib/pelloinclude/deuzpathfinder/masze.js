@@ -75,7 +75,7 @@ let displayProcessSecurityUI = () =>
     pTag = document.querySelector ("p")
 
     let body = document.querySelector ("body")
-    body.style.backgroundImage = "./../../../dimenszio/algoridum/"
+    body.style.backgroundImage = "./../../../dimenszio/algoridum/zitaverse.png"
 
     clicked = 0
 
