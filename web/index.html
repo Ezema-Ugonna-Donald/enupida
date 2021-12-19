@@ -29,14 +29,25 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="stylesheet" type="text/css" href="css/lib/dimenszio.css" >
+  <script src="/js/lib/pelloinclude/deuzpathfinder/masze.js"></script>
 
   <title>enupida</title>
   <link rel="manifest" href="manifest.json">
 </head>
-<body>
+<body id="zvers">
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
-  <iframe src="ed_u-pida.htm" frameborder="0"></iframe>
+<!--  <iframe src="ed_u-pida.htm" frameborder="0"></iframe>-->
+  <section id="algo-sect">
+    <button>Refresh</button>
+    <a href="/games-section">Game Section</a>
+    <a onclick="displayProcessSecurityUI ()">AzuGardia</a>
+    <!-- <a routerLink="/azugardia">AzuGardia</a> -->
+    <p id= "tell-me"></p>
+    <p></p>
+    <canvas></canvas>
+  </section>
 </body>
 </html>
