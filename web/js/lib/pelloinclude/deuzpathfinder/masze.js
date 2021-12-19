@@ -3,27 +3,27 @@ let matrix = []
 let imgColourMatrix = []
 
 let hut = new Image (22, 12)
-let hut.src = "./../../../dimenszio/algoridum/hut.png"
-let hut.setAttribute ('crossOrigin', '')
+hut.src = "./../../../dimenszio/algoridum/hut.png"
+hut.setAttribute ('crossOrigin', '')
 
 let cauldron = new Image (22, 12)
-let cauldron.src = "./../../../dimenszio/algoridum/african cauldron with jellof rice.png"
-let cauldron.setAttribute ("crossOrigin", "")
+cauldron.src = "./../../../dimenszio/algoridum/african cauldron with jellof rice.png"
+cauldron.setAttribute ("crossOrigin", "")
 let cauldronX = 0
 let cauldronY = 0
 
 let goalImgdimensionData = {}
 let goalImg = new Image (22, 12)
-let goalImg.src = "./../../../dimenszio/algoridum/deuz.png"
-let goalImg.setAttribute ('crossOrigin', '')
+goalImg.src = "./../../../dimenszio/algoridum/deuz.png"
+goalImg.setAttribute ('crossOrigin', '')
 let goalX = 0
 let goalY = 0
 let gImgColourMatrix = []
 
 let originImgdimensionData = {}
 let originImg = new Image (22, 12)
-let originImg.src = "./../../../dimenszio/algoridum/plateORice.png"
-let originImg.setAttribute ('crossOrigin', '')
+originImg.src = "./../../../dimenszio/algoridum/plateORice.png"
+originImg.setAttribute ('crossOrigin', '')
 let originX = 0
 let originY = 0
 let oImgColourMatrix = []
@@ -42,9 +42,9 @@ let clickedComplete = new Event ("interactionComplete")
 //let zvers = document.queryselector ("#zvers")
 
 //zvers.addEventListener ("load", () => {
-    hut = new Image (22, 12)
-    hut.src = "./../../../dimenszio/algoridum/hut.png"
-    hut.setAttribute ('crossOrigin', '')
+//    hut = new Image (22, 12)
+//    hut.src = "./../../../dimenszio/algoridum/hut.png"
+//    hut.setAttribute ('crossOrigin', '')
 
     setUniverse ()
 
@@ -62,7 +62,7 @@ getCanvasN.addEventListener ("pointerdown", (e) => {
   canvasIsClicked (e)
 })
 
-let displayProcessSecurityUI = ()
+let displayProcessSecurityUI = () =>
   {
 //    processSecurityService.msgerToggle ()
 //
@@ -72,7 +72,7 @@ let displayProcessSecurityUI = ()
 //    }
   }
 
-  let setUniverse = ()
+  let setUniverse = () =>
   {
     getCanvasN = document.querySelector ("canvas")
     let btn = document.querySelector ("button")
@@ -119,14 +119,14 @@ let displayProcessSecurityUI = ()
     // getCanvas.style.marginBottom = "4%"
   }
 
-  let reportWindowSize = (window)
+  let reportWindowSize = (window) =>
   {
     dimensionW = dimensionWFraction * window.innerWidth
     dimensionH = dimensionHFraction * window.innerHeight
   }
 
   // Set of Domain of Discourse
-  let setMatrix = (getCanvas, dimensionW)
+  let setMatrix = (getCanvas, dimensionW) =>
   {
     ctx = getCanvas.getContext ("2d")
     // ctx = getCanvas.getContext ("webgl2")
@@ -186,7 +186,7 @@ let displayProcessSecurityUI = ()
     })
   }
 
-  let setBoundaries = (getCanvas)
+  let setBoundaries = (getCanvas) =>
   {
     let i = 0
     let j = 0
@@ -332,17 +332,17 @@ let displayProcessSecurityUI = ()
 //    )
 //  }
 
-  let handleDiscourseResponse = (data)
+  let handleDiscourseResponse = (data) =>
   {
     console.log ("Success response:", data)
   }
 
-  let handleDiscourseError = (error)
+  let handleDiscourseError = (error) =>
   {
     console.log ("Error response:", error)
   }
 
-  let convertCanvasToImg = (getCanvas)
+  let convertCanvasToImg = (getCanvas) =>
   {
     let ctx = getCanvas.getContext ("2d")
     let ctxData = ctx.getImageData (0, 0, dimensionW, dimensionW).data
@@ -352,14 +352,14 @@ let displayProcessSecurityUI = ()
     return imgColourMatrix
   }
 
-  let rgbToHex = (r, g, b)
+  let rgbToHex = (r, g, b) =>
   {
     if (r > 255 || g > 255 || b > 255)
         throw "Invalid color component";
     return ((r << 16) | (g << 8) | b).toString(16);
   }
 
-  let organizeColourMatrix = (imgData)
+  let organizeColourMatrix = (imgData) =>
   {
 
     imgColourMatrix = []
@@ -392,12 +392,12 @@ let displayProcessSecurityUI = ()
     return ["#ff0000"]
   }
 
-  let setUserInteraction = (getCanvas, pTag)
+  let setUserInteraction = (getCanvas, pTag) =>
   {
     let userIntr = []
   }
 
-  let detectBoundaries = ()
+  let detectBoundaries = () =>
   {
     let bounds = []
 
@@ -410,7 +410,7 @@ let displayProcessSecurityUI = ()
     return bounds
   }
 
-  let setGoal = (e)
+  let setGoal = (e) =>
   {
     let userIntr = []
 
@@ -514,7 +514,7 @@ let displayProcessSecurityUI = ()
     // findObjectInDiscourse ()
   }
 
-  let setOrigin = (e)
+  let setOrigin = (e) =>
   {
     let userIntr = []
 
@@ -650,7 +650,7 @@ let displayProcessSecurityUI = ()
     // }
   }
 
-  let setOrigin2 = (e)
+  let setOrigin2 = (e) =>
   {
     let userIntr = []
 
@@ -763,7 +763,7 @@ let displayProcessSecurityUI = ()
     discourse.push (convertCanvasToImg (getCanvasN))
   }
 
-  let findObjectInDiscourse = ()
+  let findObjectInDiscourse = () =>
   {
     let cellData00 = []
     let cellData00Y = -1
@@ -812,7 +812,7 @@ let displayProcessSecurityUI = ()
   *  2D coordinate plane.
   *  (Goal-Oriented)
   */
-  let findRangeOfGRespectToO = ()
+  let findRangeOfGRespectToO = () =>
   {
     // where is Goal, g
     let gCellDataX = goalX + 20
@@ -1059,7 +1059,7 @@ let displayProcessSecurityUI = ()
     return false
   }
 
-  let findNeighbourhoodOfGRespectToOAndPaths = ()
+  let findNeighbourhoodOfGRespectToOAndPaths = () =>
   {
     // let isBoundarySelected = false
 
@@ -1078,12 +1078,12 @@ let displayProcessSecurityUI = ()
     console.log ("finding neighbourhood")
   }
 
-  let findBestPathFromOToG = ()
+  let findBestPathFromOToG = () =>
   {
 
   }
 
-  let canvasIsClicked = (e)
+  let canvasIsClicked = (e) =>
   {
 
     console.log ("canvas is clicked")
@@ -1126,7 +1126,7 @@ let displayProcessSecurityUI = ()
     // }
   }
 
-  let getCanvas = (getCanvas)
+  let getCanvas = (getCanvas) =>
   {
     return getCanvas
   }
