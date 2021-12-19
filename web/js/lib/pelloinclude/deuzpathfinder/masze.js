@@ -41,7 +41,7 @@ let clickedComplete = new Event ("interactionComplete")
 
 //let zvers = document.queryselector ("#zvers")
 
-//zvers.addEventListener ("load", () => {
+zvers.addEventListener ("load", () => {
 //    hut = new Image (22, 12)
 //    hut.src = "./../../../dimenszio/algoridum/hut.png"
 //    hut.setAttribute ('crossOrigin', '')
@@ -56,7 +56,7 @@ let clickedComplete = new Event ("interactionComplete")
 
     getCanvas (getCanvasN)
 
-//})
+})
 
 getCanvasN.addEventListener ("pointerdown", (e) => {
   canvasIsClicked (e)
