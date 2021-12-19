@@ -39,9 +39,9 @@ let hex = ""
 
 let clickedComplete = new Event ("interactionComplete")
 
-let zvers = document.queryselector ("#zvers")
+//let zvers = document.querySelector ("#zvers")
 
-zvers.addEventListener ("load", () => {
+window.addEventListener ("load", () => {
 //    hut = new Image (22, 12)
 //    hut.src = "./../../../dimenszio/algoridum/hut.png"
 //    hut.setAttribute ('crossOrigin', '')
@@ -56,10 +56,6 @@ zvers.addEventListener ("load", () => {
 
     getCanvas (getCanvasN)
 
-})
-
-getCanvasN.addEventListener ("pointerdown", (e) => {
-  canvasIsClicked (e)
 })
 
 let displayProcessSecurityUI = () =>
@@ -79,7 +75,7 @@ let displayProcessSecurityUI = () =>
     pTag = document.querySelector ("p")
 
     let body = document.querySelector ("body")
-    body.style.backgroundColor = "#000"
+    body.style.backgroundImage = "./../../../dimenszio/algoridum/"
 
     clicked = 0
 
@@ -89,6 +85,10 @@ let displayProcessSecurityUI = () =>
 
     window.addEventListener ("load", () => {
       pTag.textContent = "Please, interact with the dark space to set goal."
+    })
+
+    getCanvasN.addEventListener ("pointerdown", (e) => {
+      canvasIsClicked (e)
     })
 
     // let visualViewport = new VisualViewport()
