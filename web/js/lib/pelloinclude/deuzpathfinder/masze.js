@@ -39,7 +39,7 @@ let hex = ""
 
 let clickedComplete = new Event ("interactionComplete")
 
-//let zvers = document.queryselector ("#zvers")
+let zvers = document.queryselector ("#zvers")
 
 zvers.addEventListener ("load", () => {
 //    hut = new Image (22, 12)
