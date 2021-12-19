@@ -1,6 +1,27 @@
-let matrix = []
+let matrix = [];
 
-let imgColourMatrix = []
+let imgColourMatrix = [];
+
+
+let getCanvasN;
+let btn;
+let pTag;
+//pTag.textContent = " "
+
+//const body = document.querySelector ("#zvers").style.backgroundColor = "#230C1B"
+
+
+let clicked = 0
+let numOBoxes = 8
+let numOBoxesPX = numOBoxes * numOBoxes * 10
+let dimensionXY = (2 * numOBoxes) + numOBoxesPX
+let discreteW = 1536
+let discreteH = 754
+let dimensionWFraction = ((dimensionXY) / discreteW)
+let dimensionHFraction = ((dimensionXY) / discreteH)
+let dimensionW = 0
+let dimensionH = 0
+
 
 let hut = new Image (22, 12)
 hut.src = "./../../../dimenszio/algoridum/hut.png"
@@ -41,23 +62,6 @@ let clickedComplete = new Event ("interactionComplete")
 
 //let zvers = document.querySelector ("#zvers")
 
-window.addEventListener ("load", () => {
-//    hut = new Image (22, 12)
-//    hut.src = "./../../../dimenszio/algoridum/hut.png"
-//    hut.setAttribute ('crossOrigin', '')
-
-    setUniverse ()
-
-    setMatrix (getCanvasN, dimensionW)
-
-    setBoundaries (getCanvasN)
-
-    // setUserInteraction (getCanvasN, pTag)
-
-    getCanvas (getCanvasN)
-
-})
-
 let displayProcessSecurityUI = () =>
   {
 //    processSecurityService.msgerToggle ()
@@ -70,22 +74,31 @@ let displayProcessSecurityUI = () =>
 
   let setUniverse = () =>
   {
-    getCanvasN = document.querySelector ("canvas")
-    let btn = document.querySelector ("button")
-    pTag = document.querySelector ("p")
+    getCanvasN = document.querySelector ("canvas");
+    btn = document.querySelector ("button");
+    pTag = document.querySelector ("#tell-me");
+    pTag.textContent = " "
 
-    let body = document.querySelector ("body")
-    body.style.backgroundImage = "./../../../dimenszio/algoridum/zitaverse.png"
+    //const body = document.querySelector ("#zvers").style.backgroundColor = "#230C1B"
 
-    clicked = 0
 
+//    let clicked = 0
+//    let numOBoxes = 8
+//    let numOBoxesPX = numOBoxes * numOBoxes * 10
+//    let dimensionXY = (2 * numOBoxes) + numOBoxesPX
+//    let discreteW = 1536
+//    let discreteH = 754
+//    let dimensionWFraction = ((dimensionXY) / discreteW)
+//    let dimensionHFraction = ((dimensionXY) / discreteH)
+//    let dimensionW = 0
+//    let dimensionH = 0
     btn.addEventListener ("click", () => {
       location.reload ()
     })
 
-    window.addEventListener ("load", () => {
-      pTag.textContent = "Please, interact with the dark space to set goal."
-    })
+//    window.addEventListener ("load", () => {
+//      pTag.textContent = "Please, interact with the dark space to set goal."
+//    })
 
     getCanvasN.addEventListener ("pointerdown", (e) => {
       canvasIsClicked (e)
@@ -94,25 +107,15 @@ let displayProcessSecurityUI = () =>
     // let visualViewport = new VisualViewport()
     // visualViewport.onresize = reportWindowSize (window)
 
-    numOBoxes = 8
-    numOBoxesPX = numOBoxes * numOBoxes * 10
-    dimensionXY = (2 * numOBoxes) + numOBoxesPX
-    discreteW = 1536
-    discreteH = 754
-    dimensionWFraction = ((dimensionXY) / discreteW)
-    dimensionHFraction = ((dimensionXY) / discreteH)
-    dimensionW = 0
-    dimensionH = 0
-
     dimensionW = dimensionWFraction * window.innerWidth
     dimensionH = dimensionHFraction * window.innerHeight
 
     dimensionW < dimensionH ? dimensionW = dimensionW : dimensionW = dimensionH
 
     // Canvas Dimensions and Position/Placement
-    getCanvasN.style.backgroundColor = "#1fba27"
-    getCanvasN.style.width = dimensionW + "px"
-    getCanvasN.style.height = dimensionW + "px"
+//    getCanvasN.style.backgroundImage = "url ('./../../../dimenszio/algoridum/zitaverse.png')"
+//    getCanvasN.style.width = dimensionW + "px"
+//    getCanvasN.style.height = dimensionW + "px"
     // getCanvas.style.marginLeft = "29%"
     // getCanvas.style.marginRight = "10%"
     // getCanvas.style.marginTop = "3%"
@@ -289,7 +292,7 @@ let displayProcessSecurityUI = () =>
         ctx.rect (bound.x, bound.y, 20, 10)
         ctx.fill ()
 
-        ctx.drawImage(hut, bound.x, bound.y, 20, 10)
+//        ctx.drawImage(hut, bound.x, bound.y, 20, 10)
 
         // setTimeout (() => {
 
@@ -1130,3 +1133,27 @@ let displayProcessSecurityUI = () =>
   {
     return getCanvas
   }
+
+  let iframe = document.querySelector ("iframe")
+
+  window.addEventListener ("load", () => {
+  //    hut = new Image (22, 12)
+  //    hut.src = "./../../../dimenszio/algoridum/hut.png"
+  //    hut.setAttribute ('crossOrigin', '')
+
+
+      setUniverse ()
+      pTag.textContent = "Please, interact with the dark space to set goal."
+      getCanvasN.style.width = dimensionW + "px"
+      getCanvasN.style.height = dimensionW + "px"
+
+      setMatrix (getCanvasN, dimensionW)
+
+      setBoundaries (getCanvasN)
+
+      // setUserInteraction (getCanvasN, pTag)
+
+      getCanvas (getCanvasN)
+      getCanvasN.style.backgroundImage = "url ('dimenszio/algoridum/zitaverse.png'')"
+
+  })
