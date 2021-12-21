@@ -436,7 +436,7 @@ let perceiveDiscourse = (data) =>
 
   discoursePixels = convertCanvasToImg (getCanvas)
 
-  discoursePattern = ""
+  discoursePattern = []
 
   discoursePixels.forEach (el => {
     discoursePattern = discoursePattern + " " + el
@@ -456,7 +456,7 @@ let perceiveDiscourse = (data) =>
     discoursePattern = discoursePattern + " " + el
   })
 
-  sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern)
+  sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern.push (discoursePattern))
   
   cog = sessionStorage.getItem ("warlrd " + discourseWarlrd)
 
@@ -475,7 +475,7 @@ let cognizeStata = (cog) =>
   cog.forEach (el => {
     if ((el.warlrd === "warlrd " + discourseWarlrd - 1) && (el.warlrd === "warlrd " + discourseWarlrd))
     {
-      
+      if (el.x)
     }
   })
 }
