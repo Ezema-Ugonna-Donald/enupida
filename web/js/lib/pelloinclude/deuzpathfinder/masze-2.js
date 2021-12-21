@@ -148,6 +148,17 @@ let reportWindowSize = (window) =>
   dimensionH = dimensionHFraction * window.innerHeight
 }
 
+let handleDiscourseResponse = (data) =>
+{
+  console.log ("Success response:", data)
+}
+
+let handleDiscourseError = (error) =>
+{
+  console.log ("Error response:", error)
+}
+
+
 // Set of Domain of Discourse
 let setMatrix = (getCanvas, dimensionW) =>
 {
@@ -209,57 +220,73 @@ let setMatrix = (getCanvas, dimensionW) =>
   })
 }
 
+let convertCanvasToImg = (getCanvas) =>
+{
+  let ctx = getCanvas.getContext ("2d")
+  let ctxData = ctx.getImageData (0, 0, dimensionW, dimensionW).data
+  let discourseImgData = organizeColourMatrix (ctxData);
+  console.log ("canvas width", dimensionW)
+
+  return imgColourMatrix
+}
+
+let rgbToHex = (r, g, b) =>
+{
+  if (r > 255 || g > 255 || b > 255)
+      throw "Invalid color component";
+  return ((r << 16) | (g << 8) | b).toString(16);
+}
+
+let organizeColourMatrix = (imgData) =>
+{
+
+  imgColourMatrix = []
+
+  let colourMatrixColCount = 0
+  let colourCount = 0
+  let colourMatrix = []
+  imgData.forEach (el => {
+
+      colourMatrixColCount ++
+      colourCount ++
+      colourMatrix.push (el)
+
+      if ( colourCount === 4 )
+      {
+          let colourMatrixHex = "#" + ("000000" + rgbToHex (colourMatrix [0], colourMatrix [1], colourMatrix [2])).slice (-6)
+
+          imgColourMatrix.push (colourMatrixHex)
+
+          colourMatrix = []
+          colourCount = 0
+      }
+
+      if (colourMatrixColCount === imgData.length / 4)
+      {
+          return imgColourMatrix
+      }
+  })
+
+  return ["#ff0000"]
+}
+
 let cognizeOrigin = (recog) => 
 {
 
 }
 
-let cognizeStata = (cog) =>
-{
-
-}
-
-let perceiveDiscourse = (data) =>
-{
-  // event.preventDefault ()
-//  maseService.setDiscourse (data).subscribe (
-//    data => handleDiscourseResponse (data),
-//    error => handleDiscourseError (error)
-//  )
-
-
-  discourseWarlrd++
-
-  discoursePixels = convertCanvasToImg (getCanvas)
-
-  discoursePattern = ""
-
-  discoursePixels.forEach (el => {
-    discoursePattern = discoursePattern + " " + el
-  })
-
-  console.log ("Discourse Pattern", discoursePattern)
-
-  discourseData = {
-    x: "discourseSpaceX",
-    y: "discourseSpaceY",
-    width: dimensionW,
-    height: dimensionH,
-    cyber_physical_pattern: discoursePattern
-  }
-
-  discoursePixels.forEach (el => {
-    discoursePattern = discoursePattern + " " + el
-  })
-
-  sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern)
+// let cognizeStata = (cog) =>
+// {
+//   // cog.forEach (el => {
+//   //   if ()
   
-  cog = sessionStorage.getItem ("warlrd " + discourseWarlrd)
+//   //   })
 
-  
-
-  console.log ("nbg", cog)
-}
+//   cog.forEach (el => {
+//     if (el.warlrd === "")
+//     {}
+//   })
+// }
 
 let setBoundaries = (getCanvas) =>
 {
@@ -376,68 +403,6 @@ let setBoundaries = (getCanvas) =>
 
   discourse.push (convertCanvasToImg (getCanvas))
   // convertCanvasToImg (getCanvas)
-
-  perceiveDiscourse (discourseData)
-}
-
-let handleDiscourseResponse = (data) =>
-{
-  console.log ("Success response:", data)
-}
-
-let handleDiscourseError = (error) =>
-{
-  console.log ("Error response:", error)
-}
-
-let convertCanvasToImg = (getCanvas) =>
-{
-  let ctx = getCanvas.getContext ("2d")
-  let ctxData = ctx.getImageData (0, 0, dimensionW, dimensionW).data
-  let discourseImgData = organizeColourMatrix (ctxData);
-  console.log ("canvas width", dimensionW)
-
-  return imgColourMatrix
-}
-
-let rgbToHex = (r, g, b) =>
-{
-  if (r > 255 || g > 255 || b > 255)
-      throw "Invalid color component";
-  return ((r << 16) | (g << 8) | b).toString(16);
-}
-
-let organizeColourMatrix = (imgData) =>
-{
-
-  imgColourMatrix = []
-
-  let colourMatrixColCount = 0
-  let colourCount = 0
-  let colourMatrix = []
-  imgData.forEach (el => {
-
-      colourMatrixColCount ++
-      colourCount ++
-      colourMatrix.push (el)
-
-      if ( colourCount === 4 )
-      {
-          let colourMatrixHex = "#" + ("000000" + rgbToHex (colourMatrix [0], colourMatrix [1], colourMatrix [2])).slice (-6)
-
-          imgColourMatrix.push (colourMatrixHex)
-
-          colourMatrix = []
-          colourCount = 0
-      }
-
-      if (colourMatrixColCount === imgData.length / 4)
-      {
-          return imgColourMatrix
-      }
-  })
-
-  return ["#ff0000"]
 }
 
 let setUserInteraction = (getCanvas, pTag) =>
@@ -456,6 +421,63 @@ let detectBoundaries = () =>
   });
 
   return bounds
+}
+
+let perceiveDiscourse = (data) =>
+{
+  // event.preventDefault ()
+//  maseService.setDiscourse (data).subscribe (
+//    data => handleDiscourseResponse (data),
+//    error => handleDiscourseError (error)
+//  )
+
+
+  discourseWarlrd++
+
+  discoursePixels = convertCanvasToImg (getCanvas)
+
+  discoursePattern = ""
+
+  discoursePixels.forEach (el => {
+    discoursePattern = discoursePattern + " " + el
+  })
+
+  console.log ("Discourse Pattern", discoursePattern)
+
+  discourseData = {
+    x: "discourseSpaceX",
+    y: "discourseSpaceY",
+    width: dimensionW,
+    height: dimensionH,
+    cyber_physical_pattern: discoursePattern
+  }
+
+  discoursePixels.forEach (el => {
+    discoursePattern = discoursePattern + " " + el
+  })
+
+  sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern)
+  
+  cog = sessionStorage.getItem ("warlrd " + discourseWarlrd)
+
+  
+
+  console.log ("nbg", cog)
+}
+
+let cognizeStata = (cog) =>
+{
+  // cog.forEach (el => {
+  //   if ()
+  
+  //   })
+
+  cog.forEach (el => {
+    if ((el.warlrd === "warlrd " + discourseWarlrd - 1) && (el.warlrd === "warlrd " + discourseWarlrd))
+    {
+      
+    }
+  })
 }
 
 let setGoal = (e) =>
@@ -548,6 +570,14 @@ let setGoal = (e) =>
       ctx.fillStyle = "#ffffff"
 
       ctx.fillText (goalText, goalX + 10, goalY + 16)
+
+      discourseData = {
+        x: goalImgdimensionData.x,
+        y: goalImgdimensionData.y,
+        width: goalImgdimensionData.w,
+        height: goalImgdimensionData.h,
+        cyber_physical_pattern: gImgHex
+      }
   // }
 
   clicked++
@@ -599,8 +629,7 @@ let setOrigin = (e) =>
       imgColourMatrix.filter (el => {
         if (el === hex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h)))
         {  
-          isGoalImgClicked = true
-          
+          isGoalImgClicked = true        
         }
       })
 
@@ -675,6 +704,7 @@ let setOrigin = (e) =>
       ctx.fillText (goalText, originX + 10, originY + 16)
 
       let oImgData = ctx.getImageData (originX, originY, 20, 10).data
+      let ohex = "#" + ("000000" + rgbToHex (oImgData [0], oImgData [1], oImgData [2])).slice (-6)
       organizeColourMatrix (oImgData)
       oImgColourMatrix.push (imgColourMatrix)
       console.log (oImgColourMatrix [0])
@@ -683,6 +713,14 @@ let setOrigin = (e) =>
       // console.log ("mousedown page X: " + e.pageX)
       // console.log ("mousedown page y: " + e.pageY)
   // }
+
+  discourseData = {
+    x: originX,
+    y: originY,
+    width: originX + 10,
+    height: originY + 16,
+    cyber_physical_pattern: ohex
+  }
 
   clicked++
 
