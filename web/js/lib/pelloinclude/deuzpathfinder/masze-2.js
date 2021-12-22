@@ -475,7 +475,11 @@ let cognizeStata = (cog) =>
   cog.forEach (el => {
     if ((el.warlrd === "warlrd " + discourseWarlrd - 1) && (el.warlrd === "warlrd " + discourseWarlrd))
     {
-      if (el.x)
+      // if (el.x) 
+      if ((el.warlrd === "warlrd " + discourseWarlrd - 1))
+      el.cyber_physical_pattern.map (xt => {
+        if ()
+      })
     }
   })
 }
