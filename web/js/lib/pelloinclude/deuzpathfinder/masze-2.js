@@ -80,7 +80,9 @@ let discourseData = {
 
 let discourseWarlrd = 0
 
-let cog
+let cog = []
+
+// let 
 
 let displayProcessSecurityUI = () =>
 {
@@ -458,30 +460,45 @@ let perceiveDiscourse = (data) =>
 
   sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern.push (discoursePattern))
   
-  cog = sessionStorage.getItem ("warlrd " + discourseWarlrd)
+  // cog = sessionStorage.getItem ("warlrd " + discourseWarlrd)
 
   
 
-  console.log ("nbg", cog)
+  // console.log ("nbg", cog)
+
+  cognizeStata ()
 }
 
-let cognizeStata = (cog) =>
+let cognizeStata = () =>
 {
   // cog.forEach (el => {
   //   if ()
   
   //   })
 
-  cog.forEach (el => {
-    if ((el.warlrd === "warlrd " + discourseWarlrd - 1) && (el.warlrd === "warlrd " + discourseWarlrd))
-    {
+  let recog = "cog +"
+
+  // cog.forEach (el => {
+  //   if ((el.warlrd === "warlrd " + discourseWarlrd - 1) && (el.warlrd === "warlrd " + discourseWarlrd))
+  //   {
       // if (el.x) 
-      if ((el.warlrd === "warlrd " + discourseWarlrd - 1))
-      el.cyber_physical_pattern.map (xt => {
-        if ()
+      // if ((el.warlrd === "warlrd " + discourseWarlrd - 1))
+
+      let wrl0 = sessionStorage.getItem ("warlrd " + discourseWarlrd - 1)
+      let wrl1 = sessionStorage.getItem ("warlrd " + discourseWarlrd)
+
+      
+
+      wrl0.cyber_physical_pattern.filter (xt, k => {
+        if (xt != wrl1.cyber_physical_pattern [k])
+        {
+          recog += discourseWarlrd
+
+          cog.push (xt)
+        }
       })
-    }
-  })
+  //   }
+  // })
 }
 
 let setGoal = (e) =>
@@ -575,13 +592,13 @@ let setGoal = (e) =>
 
       ctx.fillText (goalText, goalX + 10, goalY + 16)
 
-      discourseData = {
-        x: goalImgdimensionData.x,
-        y: goalImgdimensionData.y,
-        width: goalImgdimensionData.w,
-        height: goalImgdimensionData.h,
-        cyber_physical_pattern: gImgHex
-      }
+      // discourseData = {
+      //   x: goalImgdimensionData.x,
+      //   y: goalImgdimensionData.y,
+      //   width: goalImgdimensionData.w,
+      //   height: goalImgdimensionData.h,
+      //   cyber_physical_pattern: gImgHex
+      // }
   // }
 
   clicked++
@@ -596,7 +613,7 @@ let setGoal = (e) =>
 
   perceiveDiscourse (discourseData)
 
-  cognizeStata (cog)
+  // cognizeStata (cog)
   // findObjectInDiscourse ()
 }
 
@@ -718,13 +735,13 @@ let setOrigin = (e) =>
       // console.log ("mousedown page y: " + e.pageY)
   // }
 
-  discourseData = {
-    x: originX,
-    y: originY,
-    width: originX + 10,
-    height: originY + 16,
-    cyber_physical_pattern: ohex
-  }
+  // discourseData = {
+  //   x: originX,
+  //   y: originY,
+  //   width: originX + 10,
+  //   height: originY + 16,
+  //   cyber_physical_pattern: ohex
+  // }
 
   clicked++
 
@@ -747,7 +764,7 @@ let setOrigin = (e) =>
   // }
 
   perceiveDiscourse (discourseData)
-  cognizeStata (cog)
+  // cognizeStata (cog)
 }
 
 let setOrigin2 = (e) =>
@@ -863,7 +880,7 @@ let setOrigin2 = (e) =>
   discourse.push (convertCanvasToImg (getCanvasN))
 
   perceiveDiscourse (discourseData)
-  cognizeStata (cog)
+  // cognizeStata (cog)
 }
 
 let findObjectInDiscourse = () =>
