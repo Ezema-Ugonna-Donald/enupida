@@ -79,7 +79,7 @@ let discourseData = {
   cyber_physical_pattern: undefined
 }
 
-let discourseWarlrd = -1
+let discourseWarlrd = 0
 
 let cog = []
 
@@ -102,6 +102,8 @@ let setUniverse = () =>
   pTag = document.querySelector ("#tell-me");
   pTag.textContent = " "
 
+  let ctx = getCanvasN.getContext ("2d")
+
   btn.addEventListener ("click", () => {
     location.reload ()
   })
@@ -121,6 +123,10 @@ let setUniverse = () =>
   dimensionH = dimensionHFraction * window.innerHeight
 
   dimensionW < dimensionH ? dimensionW = dimensionW : dimensionW = dimensionH
+
+  let imgData = ctx.getImageData (0, 0, dimensionW, dimensionH).data
+  
+  perceiveMatrix (imgData)
 }
 
 // google n stackoverflw aid
@@ -129,56 +135,6 @@ let rgbToHex = (r, g, b) =>
   if (r > 255 || g > 255 || b > 255)
       throw "Invalid color component";
   return ((r << 16) | (g << 8) | b).toString(16);
-}
-
-// imagination sets
-let organizeColourMatrix = (imgData) =>
-{
-
-  imgColourMatrix = []
-
-  let colourMatrixColCount = 0
-  let colourCount = 0
-  let colourMatrix = []
-  imgData.forEach (el => {
-
-      colourMatrixColCount ++
-      colourCount ++
-      colourMatrix.push (el)
-
-      if ( colourCount === 4 )
-      {
-          let colourMatrixHex = "#" + ("000000" + rgbToHex (colourMatrix [0], colourMatrix [1], colourMatrix [2])).slice (-6)
-
-          imgColourMatrix.push (colourMatrixHex)
-
-          colourMatrix = []
-          colourCount = 0
-      }
-
-      if (colourMatrixColCount === imgData.length / 4)
-      {
-          return imgColourMatrix
-      }
-  })
-
-  return ["#ff0000"]
-}
-
-let reportWindowSize = (window) =>
-{
-  dimensionW = dimensionWFraction * window.innerWidth
-  dimensionH = dimensionHFraction * window.innerHeight
-}
-
-let handleDiscourseResponse = (data) =>
-{
-  console.log ("Success response:", data)
-}
-
-let handleDiscourseError = (error) =>
-{
-  console.log ("Error response:", error)
 }
 
 // reality constructor et scaffold ... strctr
@@ -222,6 +178,58 @@ let perceiveMatrix = (data) =>
   
 
   // console.log ("nbg", cog)
+}
+
+// imagination sets
+let organizeColourMatrix = (imgData) =>
+{
+
+  imgColourMatrix = []
+
+  let colourMatrixColCount = 0
+  let colourCount = 0
+  let colourMatrix = []
+  imgData.forEach (el => {
+
+    colourMatrixColCount ++
+    colourCount ++
+    colourMatrix.push (el)
+
+    if ( colourCount === 4 )
+    {
+      let colourMatrixHex = "#" + ("000000" + rgbToHex (colourMatrix [0], colourMatrix [1], colourMatrix [2])).slice (-6)
+
+      imgColourMatrix.push (colourMatrixHex)
+
+      colourMatrix = []
+      colourCount = 0
+    }
+
+    if (colourMatrixColCount === imgData.length / 4)
+    {
+      return imgColourMatrix
+    }
+  })
+
+  perceiveMatrix (imgData)
+
+  return ["#ff0000"]
+}
+
+let reportWindowSize = (window) =>
+{
+  dimensionW = dimensionWFraction * window.innerWidth
+  dimensionH = dimensionHFraction * window.innerHeight
+}
+
+let handleDiscourseResponse = (data) =>
+{
+  console.log ("Success response:", data)
+}
+
+let handleDiscourseError = (error) =>
+{
+  console.log ("Error response:", error)
 }
 
 let cognizeStata = () =>
