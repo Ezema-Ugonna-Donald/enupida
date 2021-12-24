@@ -137,6 +137,28 @@ let rgbToHex = (r, g, b) =>
   return ((r << 16) | (g << 8) | b).toString(16);
 }
 
+let cognizeStata = (recog) =>
+{
+  let wrl0 = sessionStorage.getItem ("warlrd " + discourseWarlrd - 1)
+  let wrl1 = sessionStorage.getItem ("warlrd " + discourseWarlrd) 
+
+  wrl0.cyber_physical_pattern.filter (xt, k => {
+    if (JSON.stringify (xt) !== JSON.stringify (wrl1.cyber_physical_pattern [k]))
+    {
+      // recog += discourseWarlrd
+
+      cog.push (xt)
+    }
+  })
+
+  if ((cog.length !== 0) && (JSON.stringify (cog [discourseWarlrd]) === JSON.stringify (recog)))
+  {
+    pTag = "Activity has been confirmed and is recognized, click elsewhere and try again"
+
+    return
+  }  
+}
+
 // reality constructor et scaffold ... strctr
 let perceiveMatrix = (data) =>
 {
@@ -160,24 +182,20 @@ let perceiveMatrix = (data) =>
   console.log ("Discourse Pattern", discoursePattern)
 
   discourseData = {
-    x: "discourseSpaceX",
-    y: "discourseSpaceY",
+    x: data.x,
+    y: data.y,
     width: dimensionW,
     height: dimensionH,
-    cyber_physical_pattern: discoursePattern
+    cyber_physical_pattern: discourse.push ( discoursePattern )
   }
 
   // discoursePixels.forEach (el => {
   //   discoursePattern = discoursePattern + " " + el
   // })
 
-  sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern)
-  
-  // cog = sessionStorage.getItem ("warlrd " + discourseWarlrd)
+  sessionStorage.setItem ('warlrd ' + discourseWarlrd, discourseData)
 
-  
-
-  // console.log ("nbg", cog)
+  cognizeStata (discourseData.cyber_physical_pattern)
 }
 
 // imagination sets
@@ -230,38 +248,6 @@ let handleDiscourseResponse = (data) =>
 let handleDiscourseError = (error) =>
 {
   console.log ("Error response:", error)
-}
-
-let cognizeStata = () =>
-{
-  // cog.forEach (el => {
-  //   if ()
-  
-  //   })
-
-  let recog = "cog +"
-
-  // cog.forEach (el => {
-  //   if ((el.warlrd === "warlrd " + discourseWarlrd - 1) && (el.warlrd === "warlrd " + discourseWarlrd))
-  //   {
-      // if (el.x) 
-      // if ((el.warlrd === "warlrd " + discourseWarlrd - 1))
-
-      let wrl0 = sessionStorage.getItem ("warlrd " + discourseWarlrd - 1)
-      let wrl1 = sessionStorage.getItem ("warlrd " + discourseWarlrd)
-
-      
-
-      wrl0.cyber_physical_pattern.filter (xt, k => {
-        if (xt != wrl1.cyber_physical_pattern [k])
-        {
-          recog += discourseWarlrd
-
-          cog.push (xt)
-        }
-      })
-  //   }
-  // })
 }
 
 // Set of Domain of Discourse
@@ -327,11 +313,6 @@ let setMatrix = (getCanvas, dimensionW) =>
   let imgData = ctx.getImageData (0, 0, dimensionW, dimensionH).data
 
   perceiveMatrix (imgData)
-}
-
-let cognizeOrigin = (recog) => 
-{
-
 }
 
 // 
@@ -453,14 +434,9 @@ let setBoundaries = (getCanvas) =>
 
   // pe
 
-  // discourse.push (convertCanvasToImg (getCanvas))
-
   perceiveMatrix (imgData)
 
-  cognizeStata ()
-
   arckuvitei.push (organizeColourMatrix (imgData))
-  // convertCanvasToImg (getCanvas)
 }
 
 let setUserInteraction = (getCanvas, pTag) =>
@@ -485,7 +461,6 @@ let setGoal = (e) =>
 {
   let userIntr = []
 
-  // getCanvasN = document.querySelector ("canvas")
   let pTag = document.querySelector ("p")
 
   let gImgData = []
@@ -593,7 +568,7 @@ let setGoal = (e) =>
       if (isGoalImgClicked)
       {
         pTag.textContent = ""
-        pTag.textContent = "Goal is set already!!."
+        pTag.textContent = "Error, wrong place 4 nw!!."
 
         isGoalImgClicked = false
         clicked = 1
@@ -617,12 +592,9 @@ let setGoal = (e) =>
       // pTag.textContent = "Please, click the dark space to set origin."
       pTag.textContent = imgColourMatrix
 
-  // console.log (discourse [0])
-  discourse.push (convertCanvasToImg (getCanvasN))
 
   perceiveMatrix (discourseData)
 
-  // cognizeStata (cog)
   // findObjectInDiscourse ()
 }
 
@@ -760,7 +732,6 @@ let setOrigin = (e) =>
     // pTag.textContent = "Tracking..."
     pTag.textContent = imgColourMatrix
 
-  discourse.push (convertCanvasToImg (getCanvasN))
   // findObjectInDiscourse ()
 
   // let isRangeFound = findRangeOfGRespectToO ()
@@ -774,7 +745,6 @@ let setOrigin = (e) =>
   // }
 
   perceiveMatrix (discourseData)
-  // cognizeStata (cog)
 }
 
 let setOrigin2 = (e) =>
@@ -887,10 +857,8 @@ let setOrigin2 = (e) =>
       pTag.textContent = ""
       pTag.textContent = "Tracking..."
 
-  discourse.push (convertCanvasToImg (getCanvasN))
 
   perceiveMatrix (discourseData)
-  // cognizeStata (cog)
 }
 
 let findObjectInDiscourse = () =>
