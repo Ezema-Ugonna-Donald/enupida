@@ -1,6 +1,6 @@
 body
 {
-    margin: 11%;
+    margin: 0.01%;
     padding: 0;
     width: 100%;
     box-sizing: border-box;
@@ -77,4 +77,5 @@ p
 canvas
 {
   border-right: 4px solid #6df07e;
+  background-image: url ('../../dimenszio/WARLDU/zitaverse.png');
 }

@@ -189,6 +189,25 @@ let displayProcessSecurityUI = () =>
     })
   }
 
+  let perceiveDiscourse = (data) =>
+ {
+   // event.preventDefault ()
+  //  maseService.setDiscourse (data).subscribe (
+  //    data => handleDiscourseResponse (data),
+  //    error => handleDiscourseError (error)
+  //  )
+
+    let discourseWarlrd = 0
+
+    sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern)
+
+    discourseWarlrd++
+
+    let cog = sessionStorage.getItem ("warlrd")
+
+    console.log ("nbg", cog)
+  }
+
   let setBoundaries = (getCanvas) =>
   {
     let i = 0
@@ -313,7 +332,7 @@ let displayProcessSecurityUI = () =>
       discoursePattern = discoursePattern + " " + el
     })
 
-    // console.log ("Discourse Pattern", discoursePattern)
+    console.log ("Discourse Pattern", discoursePattern)
 
     let discourseData = {
       x: "discourseSpaceX",
@@ -323,17 +342,8 @@ let displayProcessSecurityUI = () =>
       cyber_physical_pattern: discoursePattern
     }
 
-//    perceiveDiscourse (discourseData)
+   perceiveDiscourse (discourseData)
   }
-
-//  perceiveDiscourse (data)
-//  {
-//    // event.preventDefault ()
-//    maseService.setDiscourse (data).subscribe (
-//      data => handleDiscourseResponse (data),
-//      error => handleDiscourseError (error)
-//    )
-//  }
 
   let handleDiscourseResponse = (data) =>
   {
