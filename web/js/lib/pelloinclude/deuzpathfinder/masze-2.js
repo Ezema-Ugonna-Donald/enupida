@@ -95,6 +95,7 @@ let displayProcessSecurityUI = () =>
 //    }
 }
 
+// umiy na-ru duo
 let setUniverse = () =>
 {
   getCanvasN = document.querySelector ("canvas");
@@ -137,6 +138,7 @@ let rgbToHex = (r, g, b) =>
   return ((r << 16) | (g << 8) | b).toString(16);
 }
 
+// Quantum Mechanic status cognizio
 let cognizeStata = (recog) =>
 {
   let wrl0 = sessionStorage.getItem ("warlrd " + discourseWarlrd - 1)
@@ -179,8 +181,6 @@ let perceiveMatrix = (data) =>
     discoursePattern.push (el)
   })
 
-  console.log ("Discourse Pattern", discoursePattern)
-
   discourseData = {
     x: data.x,
     y: data.y,
@@ -188,10 +188,6 @@ let perceiveMatrix = (data) =>
     height: dimensionH,
     cyber_physical_pattern: discourse.push ( discoursePattern )
   }
-
-  // discoursePixels.forEach (el => {
-  //   discoursePattern = discoursePattern + " " + el
-  // })
 
   sessionStorage.setItem ('warlrd ' + discourseWarlrd, discourseData)
 
