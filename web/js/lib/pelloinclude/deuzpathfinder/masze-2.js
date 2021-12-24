@@ -432,7 +432,7 @@ let setBoundaries = (getCanvas) =>
 
   perceiveMatrix (imgData)
 
-  arckuvitei.push (organizeVibrationMatrix (imgData))
+  // arckuvitei.push (organizeVibrationMatrix (imgData))
 }
 
 let setUserInteraction = (getCanvas, pTag) =>
@@ -528,7 +528,7 @@ let setGoal = (e) =>
       }
 
       gImgData = ctx.getImageData (goalX, goalY, 20, 10).data
-      arckuvitei = organizeVibrationMatrix (gImgData)
+      // arckuvitei = organizeVibrationMatrix (gImgData)
       gImgVibrationMatrix.push (imgVibrationMatrix)
       console.log (gImgVibrationMatrix [0])
       document.getElementById ("tell-me").textContent = gImgVibrationMatrix [0]
@@ -619,7 +619,7 @@ let setOrigin = (e) =>
 
       contxt = getCanvasN.getContext ("2d")
       let imgData = contxt.getImageData (originX, originY, 1, 1).data
-      arckuvitei = organizeVibrationMatrix (imgData)
+      // arckuvitei = organizeVibrationMatrix (imgData)
       hex = "#" + ("000000" + rgbToHex (imgData [0], imgData [1], imgData [2])).slice (-6)
 
       // console.log (imgVibrationMatrix)
@@ -703,9 +703,9 @@ let setOrigin = (e) =>
 
       let oImgData = ctx.getImageData (originX, originY, 20, 10).data
       let ohex = "#" + ("000000" + rgbToHex (oImgData [0], oImgData [1], oImgData [2])).slice (-6)
-      organizeVibrationMatrix (oImgData)
-      oImgVibrationMatrix.push (imgVibrationMatrix)
-      console.log (oImgVibrationMatrix [0])
+      // organizeVibrationMatrix (oImgData)
+      // oImgVibrationMatrix.push (imgVibrationMatrix)
+      // console.log (oImgVibrationMatrix [0])
       // console.log ("mousedown X: " + originX)
       // console.log ("mousedown y: " + originY)
       // console.log ("mousedown page X: " + e.pageX)
