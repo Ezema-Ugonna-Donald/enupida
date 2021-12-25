@@ -4,6 +4,8 @@ let imgVibrationMatrix = [];
 let arckuvitei = [];
 let isBoundarySelected = false
 
+let arckuviteiReact = false
+
 
 let getCanvasN;
 let btn;
@@ -144,20 +146,20 @@ let cognizeStata = (recog) =>
 
   if (wrl0 !== null)
   wrl0.cyber_physical_pattern.filter (xt, k => {
-    if (JSON.stringify (xt) === JSON.stringify (wrl1.cyber_physical_pattern [k]))
+    if (JSON.stringify (xt) !== JSON.stringify (wrl1.cyber_physical_pattern [k]))
     {
       pTag.textContent = "Status remains unchanged..."
       cog.push (xt)
     }
   })
 
-  if ((cog.length !== 0) && (JSON.stringify (cog [discourseWarlrd]) === JSON.stringify (recog)))
+  if ((cog.length === 0) && (JSON.stringify (cog [discourseWarlrd]) === JSON.stringify (recog)))
   {
     pTag.textContent += " Activity has been confirmed and is recognized, click elsewhere and try again"
 
+    arckuviteiReact = true
 
-
-    return
+    // return
   }  
 }
 
@@ -288,7 +290,7 @@ let setMatrix = (getCanvas, dimensionW) =>
     ctx.strokeStyle = "#ff9000"
     ctx.rect (cell.x, cell.y, 22, 12)
     //  ctx.fill ()
-    // ctx.stroke ()
+    ctx.stroke ()
     ctx.globalAlpha = 0.5
 
     let matrixCellText = "a" + cell.row + cell.col
@@ -453,9 +455,11 @@ let detectBoundaries = () =>
 // critical intent
 let setGoal = (e) =>
 {
-  let userIntr = []
+  // let userIntr = []
 
   // let pTag = document.querySelector ("p")
+
+  setUserInteraction (getCanvasN, pTag)
 
   let gImgData = []
   let gImgHex = ""
@@ -514,7 +518,7 @@ let setGoal = (e) =>
           y: goalY
       }
 
-      userIntr.push (goalObj)
+      // userIntr.push (goalObj)
 
       ctx.drawImage(goalImg, goalX, goalY, 20, 10);
       // ctx.drawImage(hut, goalX, goalY, 20, 10);
@@ -542,35 +546,35 @@ let setGoal = (e) =>
           isBoundarySelected = true
       })
 
-      arckuvitei [discourseWarlrd].filter (le, jl => {
-        // if (JSON.stringify (el) === JSON.stringify (arckuvitei [discourseWarlrd]))  
-        // {
-        //   // isGoalAakay = true
+      // arckuvitei [discourseWarlrd].filter (le, jl => {
+      //   // if (JSON.stringify (el) === JSON.stringify (arckuvitei [discourseWarlrd]))  
+      //   // {
+      //   //   // isGoalAakay = true
 
 
-        // }
-        // else
-        // {
-        //   el.filter (eb => {
-        //     if ((eb === gImgHex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h))))
-        //     isGoalImgClicked = true
-        //   })
-        // }   
+      //   // }
+      //   // else
+      //   // {
+      //   //   el.filter (eb => {
+      //   //     if ((eb === gImgHex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h))))
+      //   //     isGoalImgClicked = true
+      //   //   })
+      //   // }   
         
-        le [jl].filter (bvnt => {
-          if ((bvnt === gImgHex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h))))
-            isGoalImgClicked = true
-        })
-      })
+      //   le [jl].filter (bvnt => {
+      //     if ((bvnt === gImgHex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h))))
+      //       isGoalImgClicked = true
+      //   })
+      // })
 
-      if (isGoalAakriti)
+      if (arckuviteiReact)
       // if (isGoalImgClicked)
       {
-        pTag.textContent = ""
-        pTag.textContent = "Error, wrong place 4 nw!!."
+        // pTag.textContent = ""
+        // pTag.textContent = "Error, wrong place 4 nw!!."
 
-        isGoalImgClicked = false
-        clicked = 1
+        // isGoalImgClicked = false
+        clicked = 0
 
         return
       }
@@ -586,10 +590,14 @@ let setGoal = (e) =>
 
   clicked++
 
-  if ( clicked === 1 )
-      pTag.textContent = ""
-      // pTag.textContent = "Please, click the dark space to set origin."
-      pTag.textContent = imgVibrationMatrix
+  if (clicked === 1)
+  pTag.textContent = "Please, click the Z.  to set origin."
+  else if ( clicked > 1 )
+  {
+    pTag.textContent = "tracking..."
+
+    
+  }
 
   contxt = getCanvasN.getContext ("2d")
   imgData = contxt.getImageData (0, 0, dimensionW, dimensionH).data
@@ -636,20 +644,21 @@ let setOrigin = (e) =>
           isBoundarySelected = true
       })
 
-      arckuvitei [discourseWarlrd].filter (el => {
-        if (el === hex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h)))
-        {  
-          isGoalImgClicked = true        
-        }
-      })
+      // arckuvitei [discourseWarlrd].filter (el => {
+      //   if (el === hex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h)))
+      //   {  
+      //     isGoalImgClicked = true        
+      //   }
+      // })
 
-      if (isGoalImgClicked)
+      if (arckuviteiReact)
+      // if (isGoalImgClicked)
       {
-        pTag.textContent = ""
-        pTag.textContent = "Goal is set already!!."
+        // pTag.textContent = ""
+        // pTag.textContent = "Goal is set already!!."
 
-        isGoalImgClicked = false
-        clicked = 1
+        // isGoalImgClicked = false
+        clicked = 0
 
         return
       }
@@ -669,7 +678,7 @@ let setOrigin = (e) =>
 
         pTag.textContent = ""
         pTag.textContent = "That's a boundary, please interact with the dark space to set origin and initiate route finding."
-        clicked = 1
+        clicked = 0
 
         return
       }
@@ -726,10 +735,14 @@ let setOrigin = (e) =>
 
   clicked++
 
-  if ( clicked == 1 )
-    pTag.textContent = ""
-    // pTag.textContent = "Tracking..."
-    pTag.textContent = imgVibrationMatrix
+  if (clicked === 1)
+  pTag.textContent = "Please, click the Z.  to set goal."
+  else if ( clicked > 1 )
+  {
+    pTag.textContent = "tracking..."
+
+    
+  }
 
   // findObjectInDiscourse ()
 
@@ -942,11 +955,11 @@ let findRangeOfGRespectToO = () =>
 
   isBoundarySelected = false
 
-  let boundaries = detectBoundaries ()
-  boundaries.filter (el => {
-    if (hex2 === el)
-      isBoundarySelected = true
-  })
+  // let boundaries = detectBoundaries ()
+  // boundaries.filter (el => {
+  //   if (hex2 === el)
+  //     isBoundarySelected = true
+  // })
   
   if ((goalX < originX || goalX > originX) || (goalY < originY  || goalY > originY))
   {
@@ -1188,7 +1201,8 @@ let canvasIsClicked = (e) =>
 
   if (clicked > 1)
   {
-    return
+    // return
+    findRangeOfGRespectToO ()
   }
 
   if (randKey <= 0.49)
@@ -1202,14 +1216,14 @@ let canvasIsClicked = (e) =>
     setOrigin (e)
   }
 
-  if (clicked === 2)
-  {
+  // if (clicked === 2)
+  // {
     
-    getCanvasN.addEventListener ("interactionComplete", findRangeOfGRespectToO)
-    getCanvasN.dispatchEvent (clickedComplete)
+  //   getCanvasN.addEventListener ("interactionComplete", findRangeOfGRespectToO)
+  //   getCanvasN.dispatchEvent (clickedComplete)
 
-    return
-  }
+  //   return
+  // }
   // else
   // {
     
