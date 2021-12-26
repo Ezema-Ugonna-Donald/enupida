@@ -254,6 +254,20 @@ let setMatrix = (getCanvas, dimensionW) =>
 
 //    ctx.rotate (5.05)
 
+  // If the screen device has a pixel ratio over 1
+  // We render the canvas twice bigger to make it sharper (e.g. Retina iPhone)
+  if (window.devicePixelRatio > 1) 
+  {
+    getCanvasN.width = getCanvasN.clientWidth * 2;
+    getCanvasN.height = getCanvasN.clientHeight * 2;
+    ctx.scale(2, 2);
+  } 
+  else 
+  {
+    getCanvasN.width = width;
+    getCanvasN.height = height;
+  }
+
   let i = 0
   let j = 0
 
