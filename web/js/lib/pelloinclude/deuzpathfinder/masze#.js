@@ -1,4 +1,6 @@
-let matrix = [];
+class Masze 
+{
+    let matrix = [];
 
 let imgVibrationMatrix = [];
 let arckuvitei = [];
@@ -254,6 +256,20 @@ let setMatrix = (getCanvas, dimensionW) =>
 
 //    ctx.rotate (5.05)
 
+  // If the screen device has a pixel ratio over 1
+  // We render the canvas twice bigger to make it sharper (e.g. Retina iPhone)
+  if (window.devicePixelRatio > 1) 
+  {
+    getCanvasN.width = getCanvasN.clientWidth * 2;
+    getCanvasN.height = getCanvasN.clientHeight * 2;
+    ctx.scale(2, 2);
+  } 
+  else 
+  {
+    getCanvasN.width = width;
+    getCanvasN.height = height;
+  }
+
   let i = 0
   let j = 0
 
@@ -303,7 +319,7 @@ let setMatrix = (getCanvas, dimensionW) =>
 
     //  ctx.fillText (matrixCellText, cell.x + 10, cell.y + 5)
 
-     ctx.rotate (13.23)
+//      ctx.rotate (13.23)
   })
 
   let imgData = ctx.getImageData (0, 0, dimensionW, dimensionH).data
@@ -1258,3 +1274,4 @@ window.addEventListener ("load", () => {
     // getCanvas (getCanvasN)
 
 })
+}
