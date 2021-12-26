@@ -1,4 +1,6 @@
-let matrix = [];
+class Masze
+{
+    let matrix = [];
 
 let imgColourMatrix = [];
 
@@ -1264,3 +1266,4 @@ window.addEventListener ("load", () => {
     getCanvasN.style.backgroundImage = "url ('dimenszio/algoridum/zitaverse.png'')"
 
 })
+}
