@@ -14,14 +14,17 @@ let cnvas;
 
 let clicked = 0
 let numOBoxes = 8
-let numOBoxesPX = numOBoxes * numOBoxes * 10
-let dimensionXY = (2 * numOBoxes) + numOBoxesPX
+let numOBoxesPX = numOBoxes * numOBoxes * numOBoxes * 10
+let dimensionXYZ = (3 * numOBoxes) + numOBoxesPX
 let discreteW = 1536
 let discreteH = 754
-let dimensionWFraction = ((dimensionXY) / discreteW)
-let dimensionHFraction = ((dimensionXY) / discreteH)
+let discreteD = 1536
+let dimensionWFraction = ((dimensionXYZ) / discreteW)
+let dimensionHFraction = ((dimensionXYZ) / discreteH)
+let dimensionDFraction = ((dimensionXYZ) / discreteD)
 let dimensionW = 0
 let dimensionH = 0
+let dimensionD = 0
 
 
 let hut = new Image (22, 12)
@@ -33,13 +36,15 @@ cauldron.src = "./../../../dimenszio/algoridum/african cauldron with jellof rice
 cauldron.setAttribute ("crossOrigin", "")
 let cauldronX = 0
 let cauldronY = 0
+let cauldronZ = 0
 
 let goalImgdimensionData = {}
-let goalImg = new Image (22, 12)
+let goalImg = new Image (22, 12, 22)
 goalImg.src = "./../../../dimenszio/algoridum/deuz.png"
 goalImg.setAttribute ('crossOrigin', '')
 let goalX = 0
 let goalY = 0
+let goalZ = 0
 let gImgVibrationMatrix = []
 
 let originImgdimensionData = {}
@@ -249,8 +254,8 @@ let handleDiscourseError = (error) =>
 // Set of Domain of Discourse
 let setMatrix = (getCanvas, dimensionW) =>
 {
-  ctx = getCanvas.getContext ("2d")
-  // ctx = getCanvas.getContext ("webgl2")
+  // ctx = getCanvas.getContext ("3d")
+  ctx = getCanvas.getContext ("webgl2")
 
 //    ctx.rotate (5.05)
 
