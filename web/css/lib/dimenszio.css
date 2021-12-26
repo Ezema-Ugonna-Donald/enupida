@@ -43,10 +43,10 @@ a
   cursor: pointer;
   padding: 7px;
   border-radius: 5px;
-  // background-color: #4ee75f;
+  /* // background-color: #4ee75f;
   // padding: 7px;
   // border: 1px solid #593331;
-  // border-radius: 5px;
+  // border-radius: 5px; */
 }
 
 a:nth-of-type(2)
@@ -71,11 +71,14 @@ p
 #tell-me
 {
   top: 0%;
-  // left: 0%;
+  /* // left: 0%; */
 }
 
 canvas
 {
   border-right: 4px solid #6df07e;
-  background-image: url ('../../dimenszio/WARLDU/zitaverse.png');
+  /* background-image: url ('../../dimenszio/WARLDU/zitaverse.png'); */
+  background-image: url('/web/dimenszio/WARLDU/zitaverse.png'); 
+  background-repeat: no-repeat; 
+  background-size: cover;
 }

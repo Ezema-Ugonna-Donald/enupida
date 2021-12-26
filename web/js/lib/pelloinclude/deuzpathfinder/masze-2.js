@@ -1,15 +1,16 @@
 let matrix = [];
 
-let imgColourMatrix = [];
+let imgVibrationMatrix = [];
+let arckuvitei = [];
+let isBoundarySelected = false
+
+let arckuviteiReact = false
 
 
 let getCanvasN;
 let btn;
 let pTag;
-//pTag.textContent = " "
-
-//const body = document.querySelector ("#zvers").style.backgroundColor = "#230C1B"
-
+let cnvas;
 
 let clicked = 0
 let numOBoxes = 8
@@ -39,7 +40,7 @@ goalImg.src = "./../../../dimenszio/algoridum/deuz.png"
 goalImg.setAttribute ('crossOrigin', '')
 let goalX = 0
 let goalY = 0
-let gImgColourMatrix = []
+let gImgVibrationMatrix = []
 
 let originImgdimensionData = {}
 let originImg = new Image (22, 12)
@@ -47,7 +48,7 @@ originImg.src = "./../../../dimenszio/algoridum/plateORice.png"
 originImg.setAttribute ('crossOrigin', '')
 let originX = 0
 let originY = 0
-let oImgColourMatrix = []
+let oImgVibrationMatrix = []
 
 let discourse = []
 
@@ -62,13 +63,9 @@ let clickedComplete = new Event ("interactionComplete")
 
 let goalImgPatternData
 
-//let zvers = document.querySelector ("#zvers")
-
 let discoursePixels 
 
 let discoursePattern
-
-// console.log ("Discourse Pattern", discoursePattern)
 
 let discourseData = {
   x: "discourseSpaceX",
@@ -78,9 +75,11 @@ let discourseData = {
   cyber_physical_pattern: undefined
 }
 
-let discourseWarlrd = 0
+let discourseWarlrd = -1
 
-let cog
+let cog = []
+
+// let 
 
 let displayProcessSecurityUI = () =>
 {
@@ -92,6 +91,7 @@ let displayProcessSecurityUI = () =>
 //    }
 }
 
+// umiy na-ru duo
 let setUniverse = () =>
 {
   getCanvasN = document.querySelector ("canvas");
@@ -99,47 +99,135 @@ let setUniverse = () =>
   pTag = document.querySelector ("#tell-me");
   pTag.textContent = " "
 
-  //const body = document.querySelector ("#zvers").style.backgroundColor = "#230C1B"
+  // let ctx = getCanvasN.getContext ("2d")
 
-
-//    let clicked = 0
-//    let numOBoxes = 8
-//    let numOBoxesPX = numOBoxes * numOBoxes * 10
-//    let dimensionXY = (2 * numOBoxes) + numOBoxesPX
-//    let discreteW = 1536
-//    let discreteH = 754
-//    let dimensionWFraction = ((dimensionXY) / discreteW)
-//    let dimensionHFraction = ((dimensionXY) / discreteH)
-//    let dimensionW = 0
-//    let dimensionH = 0
   btn.addEventListener ("click", () => {
     location.reload ()
   })
 
-//    window.addEventListener ("load", () => {
-//      pTag.textContent = "Please, interact with the dark space to set goal."
-//    })
-
   getCanvasN.addEventListener ("pointerdown", (e) => {
     canvasIsClicked (e)
   })
-
-  // let visualViewport = new VisualViewport()
-  // visualViewport.onresize = reportWindowSize (window)
 
   dimensionW = dimensionWFraction * window.innerWidth
   dimensionH = dimensionHFraction * window.innerHeight
 
   dimensionW < dimensionH ? dimensionW = dimensionW : dimensionW = dimensionH
 
-  // Canvas Dimensions and Position/Placement
-//    getCanvasN.style.backgroundImage = "url ('./../../../dimenszio/algoridum/zitaverse.png')"
-//    getCanvasN.style.width = dimensionW + "px"
-//    getCanvasN.style.height = dimensionW + "px"
-  // getCanvas.style.marginLeft = "29%"
-  // getCanvas.style.marginRight = "10%"
-  // getCanvas.style.marginTop = "3%"
-  // getCanvas.style.marginBottom = "4%"
+  // let imgData = ctx.getImageData (0, 0, dimensionW, dimensionH).data
+  
+  getCanvasN.style.width = dimensionW + "px"
+  getCanvasN.style.height = dimensionW + "px"
+  // getCanvasN.style.backgroundImage = "url ('./../../../dimenszio/WARLDU/zitaverse.png')"
+
+  pTag.textContent = "Please, interact with the dark space to set goal."
+
+  setMatrix (getCanvasN, dimensionW)
+
+  setBoundaries (getCanvasN)
+}
+
+// google n stackoverflw aid
+let rgbToHex = (r, g, b) =>
+{
+  if (r > 255 || g > 255 || b > 255)
+      throw "Invalid color component";
+  return ((r << 16) | (g << 8) | b).toString(16);
+}
+
+// Quantum Mechanic status cognizio
+let cognizeStata = (recog) =>
+{
+  arckuvitei.push (imgVibrationMatrix)
+  // arckuvitei = imgVibrationMatrix
+
+  let wrl0 = sessionStorage.getItem ("warlrd " + discourseWarlrd - 1)
+  let wrl1 = sessionStorage.getItem ("warlrd " + discourseWarlrd) 
+
+  if (wrl0 !== null)
+  wrl0.cyber_physical_pattern.filter (xt, k => {
+    if (JSON.stringify (xt) !== JSON.stringify (wrl1.cyber_physical_pattern [k]))
+    {
+      pTag.textContent = "Status remains unchanged..."
+      cog.push (xt)
+    }
+  })
+
+  if ((cog.length === 0) && (JSON.stringify (cog [discourseWarlrd]) === JSON.stringify (recog)))
+  {
+    pTag.textContent += " Activity has been confirmed and is recognized, click elsewhere and try again"
+
+    arckuviteiReact = true
+
+    // return
+  }  
+}
+
+// reality constructor et scaffold ... strctr
+let perceiveMatrix = (data) =>
+{
+  // event.preventDefault ()
+//  maseService.setDiscourse (data).subscribe (
+//    data => handleDiscourseResponse (data),
+//    error => handleDiscourseError (error)
+//  )
+
+
+  discourseWarlrd++
+
+  discoursePixels = organizeVibrationMatrix (data)
+
+  discoursePattern = []
+
+  discoursePixels.forEach (el => {
+    discoursePattern.push (el)
+  })
+
+  discourseData = {
+    x: data.x,
+    y: data.y,
+    width: dimensionW,
+    height: dimensionH,
+    cyber_physical_pattern: discourse.push ( discoursePattern )
+  }
+
+  sessionStorage.setItem ('warlrd ' + discourseWarlrd, discourseData)
+
+  cognizeStata (discourseData.cyber_physical_pattern)
+}
+
+// imagination sets
+let organizeVibrationMatrix = (imgData) =>
+{
+
+  imgVibrationMatrix = []
+
+  let vibrationMatrixColCount = 0
+  let vibrationCount = 0
+  let vibrationMatrix = []
+  imgData.forEach (el => {
+
+    vibrationMatrixColCount ++
+    vibrationCount ++
+    vibrationMatrix.push (el)
+
+    if ( vibrationCount === 4 )
+    {
+      let vibrationMatrixHex = "#" + ("000000" + rgbToHex (vibrationMatrix [0], vibrationMatrix [1], vibrationMatrix [2])).slice (-6)
+
+      imgVibrationMatrix.push (vibrationMatrixHex)
+
+      vibrationMatrix = []
+      vibrationCount = 0
+    }
+
+    if (vibrationMatrixColCount === imgData.length / 4)
+    {
+      return imgVibrationMatrix
+    }
+  })
+
+  return ["#ff0000"]
 }
 
 let reportWindowSize = (window) =>
@@ -158,7 +246,6 @@ let handleDiscourseError = (error) =>
   console.log ("Error response:", error)
 }
 
-
 // Set of Domain of Discourse
 let setMatrix = (getCanvas, dimensionW) =>
 {
@@ -166,6 +253,20 @@ let setMatrix = (getCanvas, dimensionW) =>
   // ctx = getCanvas.getContext ("webgl2")
 
 //    ctx.rotate (5.05)
+
+  // If the screen device has a pixel ratio over 1
+  // We render the canvas twice bigger to make it sharper (e.g. Retina iPhone)
+  if (window.devicePixelRatio > 1) 
+  {
+    getCanvasN.width = getCanvasN.clientWidth * 2;
+    getCanvasN.height = getCanvasN.clientHeight * 2;
+    ctx.scale(2, 2);
+  } 
+  else 
+  {
+    getCanvasN.width = width;
+    getCanvasN.height = height;
+  }
 
   let i = 0
   let j = 0
@@ -202,8 +303,8 @@ let setMatrix = (getCanvas, dimensionW) =>
     ctx.strokeStyle = "#e4e4e4"
     ctx.strokeStyle = "#ff9000"
     ctx.rect (cell.x, cell.y, 22, 12)
-//      ctx.fill ()
-    // ctx.stroke ()
+    //  ctx.fill ()
+    ctx.stroke ()
     ctx.globalAlpha = 0.5
 
     let matrixCellText = "a" + cell.row + cell.col
@@ -214,80 +315,17 @@ let setMatrix = (getCanvas, dimensionW) =>
     ctx.fillStyle = "#000"
     // ctx.fillStyle = "#ff9000"
 
-//      ctx.fillText (matrixCellText, cell.x + 10, cell.y + 5)
+    //  ctx.fillText (matrixCellText, cell.x + 10, cell.y + 5)
 
 //      ctx.rotate (13.23)
   })
+
+  let imgData = ctx.getImageData (0, 0, dimensionW, dimensionH).data
+
+  perceiveMatrix (imgData)
 }
 
-let convertCanvasToImg = (getCanvas) =>
-{
-  let ctx = getCanvas.getContext ("2d")
-  let ctxData = ctx.getImageData (0, 0, dimensionW, dimensionW).data
-  let discourseImgData = organizeColourMatrix (ctxData);
-  console.log ("canvas width", dimensionW)
-
-  return imgColourMatrix
-}
-
-let rgbToHex = (r, g, b) =>
-{
-  if (r > 255 || g > 255 || b > 255)
-      throw "Invalid color component";
-  return ((r << 16) | (g << 8) | b).toString(16);
-}
-
-let organizeColourMatrix = (imgData) =>
-{
-
-  imgColourMatrix = []
-
-  let colourMatrixColCount = 0
-  let colourCount = 0
-  let colourMatrix = []
-  imgData.forEach (el => {
-
-      colourMatrixColCount ++
-      colourCount ++
-      colourMatrix.push (el)
-
-      if ( colourCount === 4 )
-      {
-          let colourMatrixHex = "#" + ("000000" + rgbToHex (colourMatrix [0], colourMatrix [1], colourMatrix [2])).slice (-6)
-
-          imgColourMatrix.push (colourMatrixHex)
-
-          colourMatrix = []
-          colourCount = 0
-      }
-
-      if (colourMatrixColCount === imgData.length / 4)
-      {
-          return imgColourMatrix
-      }
-  })
-
-  return ["#ff0000"]
-}
-
-let cognizeOrigin = (recog) => 
-{
-
-}
-
-// let cognizeStata = (cog) =>
-// {
-//   // cog.forEach (el => {
-//   //   if ()
-  
-//   //   })
-
-//   cog.forEach (el => {
-//     if (el.warlrd === "")
-//     {}
-//   })
-// }
-
+// limitatio factors
 let setBoundaries = (getCanvas) =>
 {
   let i = 0
@@ -401,8 +439,12 @@ let setBoundaries = (getCanvas) =>
       // ctx.stroke ()
   })
 
-  discourse.push (convertCanvasToImg (getCanvas))
-  // convertCanvasToImg (getCanvas)
+  contxt = getCanvasN.getContext ("2d")
+  let imgData = contxt.getImageData (0, 0, dimensionW, dimensionH).data
+
+  // pe
+
+  perceiveMatrix (imgData)
 }
 
 let setUserInteraction = (getCanvas, pTag) =>
@@ -410,6 +452,7 @@ let setUserInteraction = (getCanvas, pTag) =>
   let userIntr = []
 }
 
+// potentio l'limitatio de bounda
 let detectBoundaries = () =>
 {
   let bounds = []
@@ -423,6 +466,7 @@ let detectBoundaries = () =>
   return bounds
 }
 
+<<<<<<< HEAD
 let perceiveDiscourse = (data) =>
 {
   // event.preventDefault ()
@@ -491,22 +535,26 @@ let cognizeStata = (cog) =>
   })
 }
 
+=======
+// critical intent
+>>>>>>> d0a400ae7984e71a7a9ad68d462cb1a6dcdee671
 let setGoal = (e) =>
 {
-  let userIntr = []
+  // let userIntr = []
 
-  // getCanvasN = document.querySelector ("canvas")
-  let pTag = document.querySelector ("p")
+  // let pTag = document.querySelector ("p")
+
+  setUserInteraction (getCanvasN, pTag)
 
   let gImgData = []
   let gImgHex = ""
 
-  let gImgColourMatrix = []
+  let gImgVibrationMatrix = []
   let gImgDataLength = 0
 
   // if ( clicked < 1 )
   // {
-      let cnvas =  getCanvasN.getBoundingClientRect ()
+      cnvas =  getCanvasN.getBoundingClientRect ()
       ctx.beginPath ()
       ctx.lineWidth = "1";
       ctx.strokeStyle="#ffffff"
@@ -516,12 +564,12 @@ let setGoal = (e) =>
           goalY = (e.clientY - cnvas.top) / (cnvas.bottom - cnvas.top) * getCanvasN.height
 
       contxt = getCanvasN.getContext ("2d")
-      let imgData = contxt.getImageData (goalX, goalY, 1, 1).data
+      imgData = contxt.getImageData (goalX, goalY, 1, 1).data
       hex = "#" + ("000000" + rgbToHex (imgData [0], imgData [1], imgData [2])).slice (-6)
 
       // console.log (detectBoundaries ())
 
-      let isBoundarySelected = false
+      isBoundarySelected = false
 
       let boundaries = detectBoundaries ()
       boundaries.filter (el => {
@@ -555,7 +603,7 @@ let setGoal = (e) =>
           y: goalY
       }
 
-      userIntr.push (goalObj)
+      // userIntr.push (goalObj)
 
       ctx.drawImage(goalImg, goalX, goalY, 20, 10);
       // ctx.drawImage(hut, goalX, goalY, 20, 10);
@@ -566,13 +614,6 @@ let setGoal = (e) =>
           h: 10
       }
 
-      gImgData = ctx.getImageData (goalX, goalY, 20, 10).data
-      organizeColourMatrix (gImgData)
-      gImgColourMatrix.push (imgColourMatrix)
-      console.log (gImgColourMatrix [0])
-      document.getElementById ("tell-me").textContent = gImgColourMatrix [0]
-      gImgHex = "#" + ("000000" + rgbToHex (gImgData [0], gImgData [1], gImgData [2])).slice (-6)
-
       var goalText = "Goal"
 
       ctx.font = "10px Arial"
@@ -582,28 +623,72 @@ let setGoal = (e) =>
 
       ctx.fillText (goalText, goalX + 10, goalY + 16)
 
-      discourseData = {
-        x: goalImgdimensionData.x,
-        y: goalImgdimensionData.y,
-        width: goalImgdimensionData.w,
-        height: goalImgdimensionData.h,
-        cyber_physical_pattern: gImgHex
+      isBoundarySelected = false
+
+      boundaries = detectBoundaries ()
+      boundaries.filter (el => {
+        if (hex === el)
+          isBoundarySelected = true
+      })
+
+      // arckuvitei [discourseWarlrd].filter (le, jl => {
+      //   // if (JSON.stringify (el) === JSON.stringify (arckuvitei [discourseWarlrd]))  
+      //   // {
+      //   //   // isGoalAakay = true
+
+
+      //   // }
+      //   // else
+      //   // {
+      //   //   el.filter (eb => {
+      //   //     if ((eb === gImgHex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h))))
+      //   //     isGoalImgClicked = true
+      //   //   })
+      //   // }   
+        
+      //   le [jl].filter (bvnt => {
+      //     if ((bvnt === gImgHex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h))))
+      //       isGoalImgClicked = true
+      //   })
+      // })
+
+      if (arckuviteiReact)
+      // if (isGoalImgClicked)
+      {
+        // pTag.textContent = ""
+        // pTag.textContent = "Error, wrong place 4 nw!!."
+
+        // isGoalImgClicked = false
+        clicked = 0
+
+        return
       }
+
+      // discourseData = {
+      //   x: goalImgdimensionData.x,
+      //   y: goalImgdimensionData.y,
+      //   width: goalImgdimensionData.w,
+      //   height: goalImgdimensionData.h,
+      //   cyber_physical_pattern: gImgHex
+      // }
   // }
 
   clicked++
 
-  if ( clicked === 1 )
-      pTag.textContent = ""
-      // pTag.textContent = "Please, click the dark space to set origin."
-      pTag.textContent = imgColourMatrix
+  if (clicked === 1)
+  pTag.textContent = "Please, click the Z.  to set origin."
+  else if ( clicked > 1 )
+  {
+    pTag.textContent = "tracking..."
 
-  // console.log (discourse [0])
-  discourse.push (convertCanvasToImg (getCanvasN))
+    
+  }
 
-  perceiveDiscourse (discourseData)
+  contxt = getCanvasN.getContext ("2d")
+  imgData = contxt.getImageData (0, 0, dimensionW, dimensionH).data
 
-  cognizeStata (cog)
+  perceiveMatrix (imgData)
+
   // findObjectInDiscourse ()
 }
 
@@ -615,11 +700,11 @@ let setOrigin = (e) =>
 
   // let getCanvas = document.querySelector ("canvas")
 
-  // imgColourMatrix = []
+  // imgVibrationMatrix = []
 
   // if ( clicked == 1 )
   // {
-      let cnvas =  getCanvasN.getBoundingClientRect ()
+      cnvas =  getCanvasN.getBoundingClientRect ()
       ctx.beginPath ()
       ctx.lineWidth = "1";
       ctx.strokeStyle="#ffffff"
@@ -631,20 +716,12 @@ let setOrigin = (e) =>
       let isGoalImgClicked = false
 
       contxt = getCanvasN.getContext ("2d")
-      let imgData = contxt.getImageData (originX, originY, 1, 1).data
-      hex = "#" + ("000000" + rgbToHex (imgData [0], imgData [1], imgData [2])).slice (-6)
+      let oimgData = contxt.getImageData (originX, originY, 1, 1).data
+      // arckuvitei = organizeVibrationMatrix (imgData)
+      hex = "#" + ("000000" + rgbToHex (oimgData [0], oimgData [1], oimgData [2])).slice (-6)
 
-      // console.log ("this is the img colour matrix")
-      // console.log (imgColourMatrix)
-
-      imgColourMatrix.filter (el => {
-        if (el === hex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h)))
-        {  
-          isGoalImgClicked = true        
-        }
-      })
-
-      let isBoundarySelected = false
+      // console.log (imgVibrationMatrix)
+      isBoundarySelected = false
 
       let boundaries = detectBoundaries ()
       boundaries.filter (el => {
@@ -652,13 +729,21 @@ let setOrigin = (e) =>
           isBoundarySelected = true
       })
 
-      if (isGoalImgClicked)
-      {
-        pTag.textContent = ""
-        pTag.textContent = "Goal is set already!!."
+      // arckuvitei [discourseWarlrd].filter (el => {
+      //   if (el === hex && ((originX >= goalImgdimensionData.x && originX <= goalImgdimensionData.x + goalImgdimensionData.w) && (originY >= goalImgdimensionData.y && originY <= goalImgdimensionData.y + goalImgdimensionData.h)))
+      //   {  
+      //     isGoalImgClicked = true        
+      //   }
+      // })
 
-        isGoalImgClicked = false
-        clicked = 1
+      if (arckuviteiReact)
+      // if (isGoalImgClicked)
+      {
+        // pTag.textContent = ""
+        // pTag.textContent = "Goal is set already!!."
+
+        // isGoalImgClicked = false
+        clicked = 0
 
         return
       }
@@ -678,7 +763,7 @@ let setOrigin = (e) =>
 
         pTag.textContent = ""
         pTag.textContent = "That's a boundary, please interact with the dark space to set origin and initiate route finding."
-        clicked = 1
+        clicked = 0
 
         return
       }
@@ -714,33 +799,36 @@ let setOrigin = (e) =>
 
       ctx.fillText (goalText, originX + 10, originY + 16)
 
-      let oImgData = ctx.getImageData (originX, originY, 20, 10).data
+      let oImgData = ctx.getImageData (0, 0, dimensionW, dimensionH).data
       let ohex = "#" + ("000000" + rgbToHex (oImgData [0], oImgData [1], oImgData [2])).slice (-6)
-      organizeColourMatrix (oImgData)
-      oImgColourMatrix.push (imgColourMatrix)
-      console.log (oImgColourMatrix [0])
+      // organizeVibrationMatrix (oImgData)
+      // oImgVibrationMatrix.push (imgVibrationMatrix)
+      // console.log (oImgVibrationMatrix [0])
       // console.log ("mousedown X: " + originX)
       // console.log ("mousedown y: " + originY)
       // console.log ("mousedown page X: " + e.pageX)
       // console.log ("mousedown page y: " + e.pageY)
   // }
 
-  discourseData = {
-    x: originX,
-    y: originY,
-    width: originX + 10,
-    height: originY + 16,
-    cyber_physical_pattern: ohex
-  }
+  // discourseData = {
+  //   x: originX,
+  //   y: originY,
+  //   width: originX + 10,
+  //   height: originY + 16,
+  //   cyber_physical_pattern: ohex
+  // }
 
   clicked++
 
-  if ( clicked == 1 )
-    pTag.textContent = ""
-    // pTag.textContent = "Tracking..."
-    pTag.textContent = imgColourMatrix
+  if (clicked === 1)
+  pTag.textContent = "Please, click the Z.  to set goal."
+  else if ( clicked > 1 )
+  {
+    pTag.textContent = "tracking..."
 
-  discourse.push (convertCanvasToImg (getCanvasN))
+    
+  }
+
   // findObjectInDiscourse ()
 
   // let isRangeFound = findRangeOfGRespectToO ()
@@ -752,9 +840,10 @@ let setOrigin = (e) =>
   //   pTag.textContent = ""
   //   pTag.textContent = "Sorry, range could not be found, you sure your goal and origin exist?"
   // }
+  contxt = getCanvasN.getContext ("2d")
+  let imgData = contxt.getImageData (0, 0, dimensionW, dimensionH).data
 
-  perceiveDiscourse (discourseData)
-  cognizeStata (cog)
+  perceiveMatrix (imgData)
 }
 
 let setOrigin2 = (e) =>
@@ -766,7 +855,7 @@ let setOrigin2 = (e) =>
   // let getCanvas = document.querySelector ("canvas")
   let pTag = document.querySelector ("p")
 
-  imgColourMatrix = []
+  imgVibrationMatrix = []
 
   if ( clicked == 2 )
   {
@@ -792,12 +881,12 @@ let setOrigin2 = (e) =>
       let imgData = contxt.getImageData (cauldronX, cauldronY, 1, 1).data
       hex = "#" + ("000000" + rgbToHex (imgData [0], imgData [1], imgData [2])).slice (-6)
 
-      let isPickedColourImgColour = imgColourMatrix.filter (el => {
+      let isPickedVibrationImgVibration = imgVibrationMatrix.filter (el => {
 
           return el === hex && el === "#000000"
       })
 
-      let isBoundarySelected = false
+      isBoundarySelected = false
 
       let boundaries = detectBoundaries ()
       boundaries.forEach (el => {
@@ -805,7 +894,7 @@ let setOrigin2 = (e) =>
           isBoundarySelected = true
       })
 
-      if ((isGoalImgClicked && isPickedColourImgColour) || isBoundarySelected)
+      if ((isGoalImgClicked && isPickedVibrationImgVibration) || isBoundarySelected)
       {
           if (isGoalImgClicked)
           {
@@ -867,10 +956,8 @@ let setOrigin2 = (e) =>
       pTag.textContent = ""
       pTag.textContent = "Tracking..."
 
-  discourse.push (convertCanvasToImg (getCanvasN))
 
-  perceiveDiscourse (discourseData)
-  cognizeStata (cog)
+  perceiveMatrix (discourseData)
 }
 
 let findObjectInDiscourse = () =>
@@ -881,8 +968,6 @@ let findObjectInDiscourse = () =>
   let cellData01 = []
   let cellData01Y = -1
   let cellData01YArr = []
-
-  // let goalImgColourData = [#000000,#000000,#000000,#000000,#000000,#000000,#000103,#081128,#0e255b,#0f2760,#0e275f,#0e275f,#0f2760,#0f2760,#0f265f,#09183a,#000104,#000000,#000000,#000000,#000000,#000000,#000000,#000000,#040a19,#0d2355,#0f2860,#0f2861,#0f2861,#0f2861,#0f2861,#0f2861,#0f2861,#0f2861,#0d2558,#071732,#051023,#040b17,#000001,#000000,#000000,#000000,#000104,#0c2047,#0e2552,#0c1f49,#13234b,#0f2958,#102a59,#0f2a58,#102a5a,#10295c,#10295d,#10285a,#08132f,#020513,#020511,#040b1a,#040c1b,#000103,#03050b,#050e20,#030a16,#070b13,#0e0e0e,#4c1e1e,#832c2a,#662522,#7f3e3d,#7a4f4b,#7d5547,#5f4a49,#2b2d3d,#0d1a35,#0d1b35,#151c2e,#101019,#03060d,#02050e,#02050f,#050b18,#040913,#000103,#5a4d47,#c19580,#99654d,#a66e53,#966955,#ad7963,#a97957,#9c8778,#ccc6c2,#9a867e,#926851,#b27f67,#66483f,#221e25,#0a0d15,#02070d,#000102,#000000,#000000,#000000,#111111,#e3d7d0,#e6d9cf,#ddcfbd,#ead4c5,#d1af99,#be8e79,#a46957,#d8b7ab,#d3b1a1,#c7a38e,#8d7469,#282329,#211e25,#16161b,#000000,#000000,#000000,#000000,#000000,#030303,#bfbab1,#eae2d6,#e6dbd3,#e2d5d0,#a99191,#826a6a,#977e77,#d9b8ab,#dab9ad,#ccaca2,#c4a292,#77635a,#241f26,#19171c,#010001,#000000,#000000,#000000,#000000,#000000,#41403d,#dbd7ce,#e9e5e0,#e7e4e6,#e7e2e5,#e7e2e3,#decccb,#cfa8a3,#d0a9a4,#cba69f,#b49584,#4d4140,#211e25,#141216,#000000,#000000,#000000,#000000,#000000,#000000,#000000,#212120,#dcd7cc,#e9e2de,#e8e1e4,#e7e2e3,#dac6c4,#cfa8a2,#cca69b,#b49482,#2d272d,#211e26,#110f12,#000000,#000000,#000000,#000000,#000000,#000000,#000000,#000000,#000000,#0e0e0e,#e7e2d8,#e8e1e2,#e7e1e3,#e7e1e3,#e7e1e2,#69646a,#1a181e,#060607,#000000,#000000,#000000,"#000000", "#000000"]
 
   if (discourse.length <= 2)
   {
@@ -953,13 +1038,13 @@ let findRangeOfGRespectToO = () =>
   let rangeCtxX
   let rangeCtxY
 
-  let isBoundarySelected = false
+  isBoundarySelected = false
 
-  let boundaries = detectBoundaries ()
-  boundaries.filter (el => {
-    if (hex2 === el)
-      isBoundarySelected = true
-  })
+  // let boundaries = detectBoundaries ()
+  // boundaries.filter (el => {
+  //   if (hex2 === el)
+  //     isBoundarySelected = true
+  // })
   
   if ((goalX < originX || goalX > originX) || (goalY < originY  || goalY > originY))
   {
@@ -1201,7 +1286,8 @@ let canvasIsClicked = (e) =>
 
   if (clicked > 1)
   {
-    return
+    // return
+    findRangeOfGRespectToO ()
   }
 
   if (randKey <= 0.49)
@@ -1215,14 +1301,14 @@ let canvasIsClicked = (e) =>
     setOrigin (e)
   }
 
-  if (clicked === 2)
-  {
+  // if (clicked === 2)
+  // {
     
-    getCanvasN.addEventListener ("interactionComplete", findRangeOfGRespectToO)
-    getCanvasN.dispatchEvent (clickedComplete)
+  //   getCanvasN.addEventListener ("interactionComplete", findRangeOfGRespectToO)
+  //   getCanvasN.dispatchEvent (clickedComplete)
 
-    return
-  }
+  //   return
+  // }
   // else
   // {
     
@@ -1250,17 +1336,10 @@ window.addEventListener ("load", () => {
 
 
     setUniverse ()
-    pTag.textContent = "Please, interact with the dark space to set goal."
-    getCanvasN.style.width = dimensionW + "px"
-    getCanvasN.style.height = dimensionW + "px"
-
-    setMatrix (getCanvasN, dimensionW)
-
-    setBoundaries (getCanvasN)
+    
 
     // setUserInteraction (getCanvasN, pTag)
 
-    getCanvas (getCanvasN)
-    getCanvasN.style.backgroundImage = "url ('dimenszio/algoridum/zitaverse.png'')"
+    // getCanvas (getCanvasN)
 
 })
