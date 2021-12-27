@@ -20,13 +20,32 @@ let dimensionXY = (2 * numOBoxes) + numOBoxesPX
 let discreteW = 1536
 let discreteH = 754
 let discreteD = 1536
-let dimensionWFraction = ((dimensionXYZ) / discreteW)
-let dimensionHFraction = ((dimensionXYZ) / discreteH)
-let dimensionDFraction = ((dimensionXYZ) / discreteD)
+let dimensionWFraction = ((dimensionXY) / discreteW)
+let dimensionHFraction = ((dimensionXY) / discreteH)
+// let dimensionDFraction = ((dimensionXYZ) / discreteD)
 let dimensionW = 0
 let dimensionH = 0
 let dimensionD = 0
 
+let ala = new Image ( 22, 12 )
+ala.src = "./../../dimenszio/WARLDU/ala.bmp"
+ala.setAttribute ("crossOrigin", "")
+
+let ulo = new Image ( 22, 12 )
+ulo.src = "./../../dimenszio/WARLDU/ulo.bmp"
+ulo.setAttribute ("crossOrigin", "")
+
+let uloB = new Image ( 22, 12 )
+uloB.src = "./../../dimenszio/WARLDU/ulo-b.bmp"
+uloB.setAttribute ("crossOrigin", "")
+
+let osisi = new Image ( 22, 12 )
+osisi.src = "./../../dimenszio/WARLDU/osisi.bmp"
+osisi.setAttribute ("crossOrigin", "")
+
+let osisiB = new Image ( 22, 12 )
+osisiB.src = "./../../dimenszio/WARLDU/osisi-b.bmp"
+osisiB.setAttribute ("crossOrigin", "")
 
 let hut = new Image (22, 12)
 hut.src = "./../../../dimenszio/algoridum/hut.png"
@@ -256,8 +275,9 @@ let handleDiscourseError = (error) =>
 let setMatrix = (getCanvas, dimensionW) =>
 {
   // ctx = getCanvas.getContext ("3d")
-  ctx = getCanvas.getContext ("webgl2")
-  ctx = getCanvas.getContext ("bitmaprender")
+  // ctx = getCanvas.getContext ("webgl2")
+  // ctx = getCanvas.getContext ("bitmaprender")
+  ctx = getCanvas.getContext ("2d")
 
 //    ctx.rotate (5.05)
 
@@ -301,7 +321,32 @@ let setMatrix = (getCanvas, dimensionW) =>
       }
   }
 
+  
+  // if (clicked > 1)
+  // {
+  //   // return
+  //   findRangeOfGRespectToO ()
+  // }
+
+  // if (randKey <= 0.49)
+  // {
+  //   // randKey = 0
+  //   setGoal (e)
+  // }
+  // else 
+  // {
+  //   // randKey = 1
+  //   setOrigin (e)
+  // }
+  let randKey = 1
+
   matrix.forEach (cell => {
+    randKey = Math.random ()
+
+    // this.ctx.drawImage(ala, cell.x, cell.y, 20, 10);
+    // this.ctx.drawImage(randKey <= 0.49 ? osisiB : osisi, randKey > 0.49 ? cell.x + 20 : cell.x, randKey <= 0.49 ? cell.y + 10 : cell.y, 20, 10);
+    // this.ctx.drawImage((randKey <= 0.49) ? osisiB : osisi, cell.x, cell.y, 20, 10);
+    this.ctx.drawImage((randKey <= 0.49) ? ((randKey < 0.23) ? osisiB : osisi) : ala, cell.x, cell.y, 20, 10);
     ctx.beginPath ()
     // ctx.lineWidth = "1";
     // ctx.strokeStyle="#000000"
@@ -311,8 +356,13 @@ let setMatrix = (getCanvas, dimensionW) =>
     ctx.strokeStyle = "#ff9000"
     ctx.rect (cell.x, cell.y, 22, 12)
     //  ctx.fill ()
-    ctx.stroke ()
-    ctx.globalAlpha = 0.5
+    // ctx.stroke ()
+    // ctx.globalAlpha = 0.5
+        //  ctx.rotate (180)
+        //  ctx.rotate (45)
+        ala.style.transform = "rotate(45)"
+        osisi.style.transform = "rotate(45)"
+        osisiB.style.transform = "rotate(45)"
 
     let matrixCellText = "a" + cell.row + cell.col
     ctx.font = "normal 1000 7.457px Calibri"
@@ -505,6 +555,8 @@ let setGoal = (e) =>
 
       // console.log (detectBoundaries ())
 
+      document.getElementById ("tell-me").textContent = imgVibrationMatrix
+
       isBoundarySelected = false
 
       let boundaries = detectBoundaries ()
@@ -657,6 +709,8 @@ let setOrigin = (e) =>
       hex = "#" + ("000000" + rgbToHex (oimgData [0], oimgData [1], oimgData [2])).slice (-6)
 
       // console.log (imgVibrationMatrix)
+
+      document.getElementById ("tell-me").textContent = imgVibrationMatrix
       isBoundarySelected = false
 
       let boundaries = detectBoundaries ()

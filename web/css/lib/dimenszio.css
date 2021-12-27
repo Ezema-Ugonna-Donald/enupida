@@ -78,7 +78,7 @@ canvas
 {
   border-right: 4px solid #6df07e;
   /* background-image: url ('../../dimenszio/WARLDU/zitaverse.png'); */
-  background-image: url('/web/dimenszio/WARLDU/zitaverse.png'); 
+  /* background-image: url('/web/dimenszio/WARLDU/zitaverse.png');  */
   background-repeat: no-repeat; 
   background-size: cover;
 }
