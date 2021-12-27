@@ -14,8 +14,9 @@ let cnvas;
 
 let clicked = 0
 let numOBoxes = 8
-let numOBoxesPX = numOBoxes * numOBoxes * numOBoxes * 10
-let dimensionXYZ = (3 * numOBoxes) + numOBoxesPX
+let numOBoxesPX = numOBoxes * numOBoxes * 10
+let dimensionXY = (2 * numOBoxes) + numOBoxesPX
+// let dimensionXYZ = (2 * numOBoxes) + numOBoxesPX
 let discreteW = 1536
 let discreteH = 754
 let discreteD = 1536
@@ -39,7 +40,7 @@ let cauldronY = 0
 let cauldronZ = 0
 
 let goalImgdimensionData = {}
-let goalImg = new Image (22, 12, 22)
+let goalImg = new Image (22, 12)
 goalImg.src = "./../../../dimenszio/algoridum/deuz.png"
 goalImg.setAttribute ('crossOrigin', '')
 let goalX = 0
@@ -256,22 +257,23 @@ let setMatrix = (getCanvas, dimensionW) =>
 {
   // ctx = getCanvas.getContext ("3d")
   ctx = getCanvas.getContext ("webgl2")
+  ctx = getCanvas.getContext ("bitmaprender")
 
 //    ctx.rotate (5.05)
 
   // If the screen device has a pixel ratio over 1
   // We render the canvas twice bigger to make it sharper (e.g. Retina iPhone)
-  if (window.devicePixelRatio > 1) 
-  {
-    getCanvasN.width = getCanvasN.clientWidth * 2;
-    getCanvasN.height = getCanvasN.clientHeight * 2;
-    ctx.scale(2, 2);
-  } 
-  else 
-  {
-    getCanvasN.width = width;
-    getCanvasN.height = height;
-  }
+  // if (window.devicePixelRatio > 1) 
+  // {
+  //   getCanvasN.width = getCanvasN.clientWidth * 2;
+  //   getCanvasN.height = getCanvasN.clientHeight * 2;
+  //   ctx.scale(2, 2);
+  // } 
+  // else 
+  // {
+  //   getCanvasN.width = width;
+  //   getCanvasN.height = height;
+  // }
 
   let i = 0
   let j = 0
@@ -471,78 +473,7 @@ let detectBoundaries = () =>
   return bounds
 }
 
-<<<<<<< HEAD
-let perceiveDiscourse = (data) =>
-{
-  // event.preventDefault ()
-//  maseService.setDiscourse (data).subscribe (
-//    data => handleDiscourseResponse (data),
-//    error => handleDiscourseError (error)
-//  )
-
-
-  discourseWarlrd++
-
-  discoursePixels = convertCanvasToImg (getCanvas)
-
-  discoursePattern = []
-
-  discoursePixels.forEach (el => {
-    discoursePattern = discoursePattern + " " + el
-  })
-
-  console.log ("Discourse Pattern", discoursePattern)
-
-  discourseData = {
-    x: "discourseSpaceX",
-    y: "discourseSpaceY",
-    width: dimensionW,
-    height: dimensionH,
-    cyber_physical_pattern: discoursePattern
-  }
-
-  discoursePixels.forEach (el => {
-    discoursePattern = discoursePattern + " " + el
-  })
-
-  sessionStorage.setItem ('warlrd ' + discourseWarlrd, 'discourseDataX ' + data.x + ', discourseDataY ' + data.y + ', discourseDataWidth ' + data.width + ', discourseDataHeight ' +  data.height + ':= cyber_physical_pattern - ' + data.cyber_physical_pattern.push (discoursePattern))
-  
-  cog = sessionStorage.getItem ("warlrd " + discourseWarlrd)
-
-  
-
-  console.log ("nbg", cog)
-}
-
-let cognizeStata = (cog) =>
-{
-  // cog.forEach (el => {
-  //   if ()
-  
-  //   })
-
-  cog.forEach (el => {
-    if ((el.warlrd === "warlrd " + discourseWarlrd - 1) && (el.warlrd === "warlrd " + discourseWarlrd))
-    {
-      // if (el.x) 
-      // if ((el.warlrd === "warlrd " + discourseWarlrd - 1))
-
-      let wrl0 = sessionStorage.getItem ("warlrd " + discourseWarlrd - 1)
-      let wrl1 = sessionStorage.getItem ("warlrd " + discourseWarlrd)
-
-      el.cyber_physical_pattern.map (xt => {
-        if ()
-        {
-          el.cyber_physical_pattern [xt]
-        }
-      })
-    }
-  })
-}
-
-=======
 // critical intent
->>>>>>> d0a400ae7984e71a7a9ad68d462cb1a6dcdee671
 let setGoal = (e) =>
 {
   // let userIntr = []
